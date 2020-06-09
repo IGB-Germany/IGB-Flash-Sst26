@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="1416385923">
+        <error id="funcArgNamesDifferent" severity="style" msg="Function &apos;printHexStr&apos; argument 1 names different: declaration &apos;str&apos; definition &apos;buf&apos;." verbose="Function &apos;printHexStr&apos; argument 1 names different: declaration &apos;str&apos; definition &apos;buf&apos;." cwe="628" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" line="114"/>
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.h" line="19"/>
+            <symbol>printHexStr</symbol>
+        </error>
+        <error id="functionConst" severity="style" msg="Technically the member function &apos;Sst26::returnNestedClassObject&apos; can be const." verbose="The member function &apos;Sst26::returnNestedClassObject&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\flashSst26.h" line="198"/>
+            <symbol>Sst26::returnNestedClassObject</symbol>
+        </error>
+        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;printFlashSerial::printHexStr&apos; can be static (but you may consider moving to unnamed namespace)." verbose="The member function &apos;printFlashSerial::printHexStr&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances? And maybe it is more appropriate to move this function to a unnamed namespace." cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.h" line="19"/>
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" line="114"/>
+            <symbol>printFlashSerial::printHexStr</symbol>
+        </error>
+        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;printFlashSerial::printAddress&apos; can be static (but you may consider moving to unnamed namespace)." verbose="The member function &apos;printFlashSerial::printAddress&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances? And maybe it is more appropriate to move this function to a unnamed namespace." cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.h" line="22"/>
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" line="136"/>
+            <symbol>printFlashSerial::printAddress</symbol>
+        </error>
+        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;printFlashSerial::printLenData&apos; can be static (but you may consider moving to unnamed namespace)." verbose="The member function &apos;printFlashSerial::printLenData&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances? And maybe it is more appropriate to move this function to a unnamed namespace." cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.h" line="25"/>
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" line="145"/>
+            <symbol>printFlashSerial::printLenData</symbol>
+        </error>
+        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;printFlashSerial::printByte&apos; can be static (but you may consider moving to unnamed namespace)." verbose="The member function &apos;printFlashSerial::printByte&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances? And maybe it is more appropriate to move this function to a unnamed namespace." cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.h" line="28"/>
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" line="129"/>
+            <symbol>printFlashSerial::printByte</symbol>
+        </error>
+        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;printFlashSerial::printData&apos; can be static (but you may consider moving to unnamed namespace)." verbose="The member function &apos;printFlashSerial::printData&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances? And maybe it is more appropriate to move this function to a unnamed namespace." cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.h" line="31"/>
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" line="153"/>
+            <symbol>printFlashSerial::printData</symbol>
+        </error>
+        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;printFlashSerial::printId&apos; can be static (but you may consider moving to unnamed namespace)." verbose="The member function &apos;printFlashSerial::printId&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances? And maybe it is more appropriate to move this function to a unnamed namespace." cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.h" line="36"/>
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" line="32"/>
+            <symbol>printFlashSerial::printId</symbol>
+        </error>
+        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;printFlashSerial::printRegisterStatus&apos; can be static (but you may consider moving to unnamed namespace)." verbose="The member function &apos;printFlashSerial::printRegisterStatus&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances? And maybe it is more appropriate to move this function to a unnamed namespace." cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.h" line="39"/>
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" line="48"/>
+            <symbol>printFlashSerial::printRegisterStatus</symbol>
+        </error>
+        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;printFlashSerial::printRegisterConfiguration&apos; can be static (but you may consider moving to unnamed namespace)." verbose="The member function &apos;printFlashSerial::printRegisterConfiguration&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances? And maybe it is more appropriate to move this function to a unnamed namespace." cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.h" line="42"/>
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" line="71"/>
+            <symbol>printFlashSerial::printRegisterConfiguration</symbol>
+        </error>
+        <error id="functionStatic" severity="performance" msg="Technically the member function &apos;printFlashSerial::printRegisterBlockProtection&apos; can be static (but you may consider moving to unnamed namespace)." verbose="The member function &apos;printFlashSerial::printRegisterBlockProtection&apos; can be made a static function. Making a function static can bring a performance benefit since no &apos;this&apos; instance is passed to the function. This change should not cause compiler errors but it does not necessarily make sense conceptually. Think about your design and the task of the function first - is it a function that must not access members of class instances? And maybe it is more appropriate to move this function to a unnamed namespace." cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.h" line="45"/>
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" line="94"/>
+            <symbol>printFlashSerial::printRegisterBlockProtection</symbol>
+        </error>
+        <error id="functionConst" severity="style" msg="Technically the member function &apos;printFlashSerial::returnSst26Object&apos; can be const." verbose="The member function &apos;printFlashSerial::returnSst26Object&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.h" line="48"/>
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" line="24"/>
+            <symbol>printFlashSerial::returnSst26Object</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Sst26&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Sst26&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\flashSst26.h" line="111"/>
+            <symbol>Sst26</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;printFlashSerial&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;printFlashSerial&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\FlashSst26\examples\archiv\flashSst26_0.1.0\printFlashSst26Serial.h" line="13"/>
+            <symbol>printFlashSerial</symbol>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="returnSst26Object" lineNumber="24"/>
+    <functiondecl functionName="printId" lineNumber="32"/>
+    <functiondecl functionName="printRegisterStatus" lineNumber="48"/>
+    <functiondecl functionName="printRegisterConfiguration" lineNumber="71"/>
+    <functiondecl functionName="printRegisterBlockProtection" lineNumber="94"/>
+    <functiondecl functionName="printHexStr" lineNumber="114"/>
+    <functiondecl functionName="printByte" lineNumber="129"/>
+    <functiondecl functionName="printAddress" lineNumber="136"/>
+    <functiondecl functionName="printLenData" lineNumber="145"/>
+    <functiondecl functionName="printData" lineNumber="153"/>
+    <functioncall functionName="BIN"/>
+    <functioncall functionName="F"/>
+    <functioncall functionName="HEX"/>
+    <functioncall functionName="Sst26"/>
+    <functioncall functionName="_flash"/>
+    <functioncall functionName="_sizePage"/>
+    <functioncall functionName="a"/>
+    <functioncall functionName="address"/>
+    <functioncall functionName="adressRange0"/>
+    <functioncall functionName="adressRange1"/>
+    <functioncall functionName="adressRange2"/>
+    <functioncall functionName="adressRange3"/>
+    <functioncall functionName="adressRange4"/>
+    <functioncall functionName="adressRange5"/>
+    <functioncall functionName="blockProtectionVolatility"/>
+    <functioncall functionName="busy1"/>
+    <functioncall functionName="busy2"/>
+    <functioncall functionName="data"/>
+    <functioncall functionName="deviceId"/>
+    <functioncall functionName="deviceType"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="frequency"/>
+    <functioncall functionName="i"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="ioConfiguration"/>
+    <functioncall functionName="jedecId"/>
+    <functioncall functionName="lenData"/>
+    <functioncall functionName="manufacturerId"/>
+    <functioncall functionName="print"/>
+    <functioncall functionName="printFlashSerial"/>
+    <functioncall functionName="println"/>
+    <functioncall functionName="reserved1"/>
+    <functioncall functionName="reserved2"/>
+    <functioncall functionName="reserved3"/>
+    <functioncall functionName="reserved4"/>
+    <functioncall functionName="reserved5"/>
+    <functioncall functionName="return"/>
+    <functioncall functionName="securityId"/>
+    <functioncall functionName="slaveSelectPin"/>
+    <functioncall functionName="snprintf"/>
+    <functioncall functionName="sprintf"/>
+    <functioncall functionName="string"/>
+    <functioncall functionName="suspendErase"/>
+    <functioncall functionName="suspendProgram"/>
+    <functioncall functionName="writeEnableLatch"/>
+    <functioncall functionName="writeProtection"/>
+    <functioncall functionName="writeProtectionPin"/>
+  </FileInfo>
+</analyzerinfo>

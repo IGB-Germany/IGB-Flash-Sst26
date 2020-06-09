@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="1732125734">
+        <error id="uselessAssignmentArg" severity="style" msg="Assignment of function parameter has no effect outside the function." verbose="Assignment of function parameter has no effect outside the function." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="529"/>
+        </error>
+        <error id="funcArgNamesDifferent" severity="style" msg="Function &apos;getIdSecurity&apos; argument 1 names different: declaration &apos;securityId&apos; definition &apos;idSecurity&apos;." verbose="Function &apos;getIdSecurity&apos; argument 1 names different: declaration &apos;securityId&apos; definition &apos;idSecurity&apos;." cwe="628" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="525"/>
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.h" line="139"/>
+            <symbol>getIdSecurity</symbol>
+        </error>
+        <error id="sizeofwithsilentarraypointer" severity="warning" msg="Using &apos;sizeof&apos; on array given as function argument returns size of a pointer." verbose="Using &apos;sizeof&apos; for array given as function argument returns the size of a pointer. It does not return the size of the whole array in bytes as might be expected. For example, this code:\012     int f(char a[100]) {\012         return sizeof(a);\012     }\012returns 4 (in 32-bit systems) or 8 (in 64-bit systems) instead of 100 (the size of the array in bytes)." cwe="467">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="237"/>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;addressStartPage&apos; is assigned a value that is never used." verbose="Variable &apos;addressStartPage&apos; is assigned a value that is never used." cwe="563">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="376"/>
+            <symbol>addressStartPage</symbol>
+        </error>
+        <error id="unreadVariable" severity="style" msg="Variable &apos;idSecurity&apos; is assigned a value that is never used." verbose="Variable &apos;idSecurity&apos; is assigned a value that is never used." cwe="563">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="529"/>
+            <symbol>idSecurity</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Sst26::_buffer&apos; is not initialized in the constructor." verbose="Member variable &apos;Sst26::_buffer&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="4"/>
+            <symbol>Sst26::_buffer</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Sst26::_idSecurity&apos; is not initialized in the constructor." verbose="Member variable &apos;Sst26::_idSecurity&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="4"/>
+            <symbol>Sst26::_idSecurity</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Sst26::_securityDataBuffer&apos; is not initialized in the constructor." verbose="Member variable &apos;Sst26::_securityDataBuffer&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="4"/>
+            <symbol>Sst26::_securityDataBuffer</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Sst26::_buffer&apos; is not initialized in the constructor." verbose="Member variable &apos;Sst26::_buffer&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="14"/>
+            <symbol>Sst26::_buffer</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Sst26::_idSecurity&apos; is not initialized in the constructor." verbose="Member variable &apos;Sst26::_idSecurity&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="14"/>
+            <symbol>Sst26::_idSecurity</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Sst26::_securityDataBuffer&apos; is not initialized in the constructor." verbose="Member variable &apos;Sst26::_securityDataBuffer&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="14"/>
+            <symbol>Sst26::_securityDataBuffer</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Sst26::_buffer&apos; is not initialized in the constructor." verbose="Member variable &apos;Sst26::_buffer&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="24"/>
+            <symbol>Sst26::_buffer</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Sst26::_idSecurity&apos; is not initialized in the constructor." verbose="Member variable &apos;Sst26::_idSecurity&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="24"/>
+            <symbol>Sst26::_idSecurity</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Sst26::_securityDataBuffer&apos; is not initialized in the constructor." verbose="Member variable &apos;Sst26::_securityDataBuffer&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="24"/>
+            <symbol>Sst26::_securityDataBuffer</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Sst26::_buffer&apos; is not initialized in the constructor." verbose="Member variable &apos;Sst26::_buffer&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="34"/>
+            <symbol>Sst26::_buffer</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Sst26::_idSecurity&apos; is not initialized in the constructor." verbose="Member variable &apos;Sst26::_idSecurity&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="34"/>
+            <symbol>Sst26::_idSecurity</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;Sst26::_securityDataBuffer&apos; is not initialized in the constructor." verbose="Member variable &apos;Sst26::_securityDataBuffer&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="34"/>
+            <symbol>Sst26::_securityDataBuffer</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_id&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_id&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="7"/>
+            <symbol>_id</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_registerStatus&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_registerStatus&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="8"/>
+            <symbol>_registerStatus</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_registerConfiguration&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_registerConfiguration&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="9"/>
+            <symbol>_registerConfiguration</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_registerBlockProtection&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_registerBlockProtection&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="10"/>
+            <symbol>_registerBlockProtection</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_id&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_id&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="18"/>
+            <symbol>_id</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_registerStatus&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_registerStatus&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="19"/>
+            <symbol>_registerStatus</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_registerConfiguration&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_registerConfiguration&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="20"/>
+            <symbol>_registerConfiguration</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_registerBlockProtection&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_registerBlockProtection&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="21"/>
+            <symbol>_registerBlockProtection</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_id&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_id&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="28"/>
+            <symbol>_id</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_registerStatus&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_registerStatus&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="29"/>
+            <symbol>_registerStatus</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_registerConfiguration&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_registerConfiguration&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="30"/>
+            <symbol>_registerConfiguration</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_registerBlockProtection&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_registerBlockProtection&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="31"/>
+            <symbol>_registerBlockProtection</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_id&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_id&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="38"/>
+            <symbol>_id</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_registerStatus&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_registerStatus&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="39"/>
+            <symbol>_registerStatus</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_registerConfiguration&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_registerConfiguration&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="40"/>
+            <symbol>_registerConfiguration</symbol>
+        </error>
+        <error id="useInitializationList" severity="performance" msg="Variable &apos;_registerBlockProtection&apos; is assigned in constructor body. Consider performing initialization in initialization list." verbose="When an object of a class is created, the constructors of all member variables are called consecutively in the order the variables are declared, even if you don&apos;t explicitly write them to the initialization list. You could avoid assigning &apos;_registerBlockProtection&apos; a value by passing the value to the constructor in the initialization list." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" line="41"/>
+            <symbol>_registerBlockProtection</symbol>
+        </error>
+        <error id="functionConst" severity="style" msg="Technically the member function &apos;Sst26::returnNestedClassObject&apos; can be const." verbose="The member function &apos;Sst26::returnNestedClassObject&apos; can be made a const function. Making this function &apos;const&apos; should not cause compiler errors. Even though the function can be made const function technically it may not make sense conceptually. Think about your design and the task of the function first - is it a function that must not change object internal state?" cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.h" line="198"/>
+            <symbol>Sst26::returnNestedClassObject</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;Sst26&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;Sst26&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\flashSst26.h" line="111"/>
+            <symbol>Sst26</symbol>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="enableWrite" lineNumber="47"/>
+    <functiondecl functionName="disableWrite" lineNumber="59"/>
+    <functiondecl functionName="readId" lineNumber="71"/>
+    <functiondecl functionName="readRegisterStatus" lineNumber="90"/>
+    <functiondecl functionName="readRegisterConfiguration" lineNumber="113"/>
+    <functiondecl functionName="writeRegisterConfiguration" lineNumber="136"/>
+    <functiondecl functionName="readRegisterBlockProtection" lineNumber="173"/>
+    <functiondecl functionName="writeRegisterBlockProtection" lineNumber="195"/>
+    <functiondecl functionName="readByte" lineNumber="224"/>
+    <functiondecl functionName="writeByte" lineNumber="251"/>
+    <functiondecl functionName="writePage" lineNumber="275"/>
+    <functiondecl functionName="readPage" lineNumber="315"/>
+    <functiondecl functionName="readData" lineNumber="342"/>
+    <functiondecl functionName="writeData" lineNumber="363"/>
+    <functiondecl functionName="erase4kByte" lineNumber="430"/>
+    <functiondecl functionName="erase8kByte" lineNumber="457"/>
+    <functiondecl functionName="eraseAll" lineNumber="485"/>
+    <functiondecl functionName="readSecurityId" lineNumber="507"/>
+    <functiondecl functionName="getIdSecurity" lineNumber="525"/>
+    <functiondecl functionName="writeSecurityData" lineNumber="537"/>
+    <functiondecl functionName="readSecurityData" lineNumber="561"/>
+    <functiondecl functionName="disableGlobalBlockProtection" lineNumber="583"/>
+    <functiondecl functionName="enableDeepPowerDown" lineNumber="597"/>
+    <functiondecl functionName="releaseDeepPowerDown" lineNumber="609"/>
+    <functiondecl functionName="reset" lineNumber="624"/>
+    <functiondecl functionName="isBusy" lineNumber="640"/>
+    <functioncall functionName="DISABLE_GLOBAL_BP_REGISTER"/>
+    <functioncall functionName="DISABLE_WRITE"/>
+    <functioncall functionName="ENABLE_DEEP_POWER_DOWN"/>
+    <functioncall functionName="ENABLE_RESET"/>
+    <functioncall functionName="ENABLE_WRITE"/>
+    <functioncall functionName="ERASE_4KB"/>
+    <functioncall functionName="ERASE_8KB"/>
+    <functioncall functionName="ERASE_ALL"/>
+    <functioncall functionName="F"/>
+    <functioncall functionName="HEX"/>
+    <functioncall functionName="READ_BP_REGISTER"/>
+    <functioncall functionName="READ_CONFIGURATION_REGISTER"/>
+    <functioncall functionName="READ_DATA"/>
+    <functioncall functionName="READ_JEDEC_ID"/>
+    <functioncall functionName="READ_SECURITY_DATA"/>
+    <functioncall functionName="READ_STATUS_REGISTER"/>
+    <functioncall functionName="RELEASE_DEEP_POWER_DOWN"/>
+    <functioncall functionName="RESET"/>
+    <functioncall functionName="Sst26"/>
+    <functioncall functionName="WRITE_BP_REGISTER"/>
+    <functioncall functionName="WRITE_DATA"/>
+    <functioncall functionName="WRITE_SECURITY_DATA"/>
+    <functioncall functionName="WRITE_STATUS_REGISTER"/>
+    <functioncall functionName="_buffer"/>
+    <functioncall functionName="_comDriverSpi"/>
+    <functioncall functionName="_idSecurity"/>
+    <functioncall functionName="_lenIdSecurity"/>
+    <functioncall functionName="_registerStatus"/>
+    <functioncall functionName="_sizePage"/>
+    <functioncall functionName="address"/>
+    <functioncall functionName="addressActual"/>
+    <functioncall functionName="addressEnd"/>
+    <functioncall functionName="addressStart"/>
+    <functioncall functionName="adressRange0"/>
+    <functioncall functionName="adressRange1"/>
+    <functioncall functionName="adressRange2"/>
+    <functioncall functionName="adressRange3"/>
+    <functioncall functionName="adressRange4"/>
+    <functioncall functionName="adressRange5"/>
+    <functioncall functionName="break"/>
+    <functioncall functionName="char"/>
+    <functioncall functionName="cmd"/>
+    <functioncall functionName="data"/>
+    <functioncall functionName="dataMode"/>
+    <functioncall functionName="dataOrder"/>
+    <functioncall functionName="delay"/>
+    <functioncall functionName="durationErase4kByte"/>
+    <functioncall functionName="durationErase8kByte"/>
+    <functioncall functionName="durationEraseAll"/>
+    <functioncall functionName="durationWritePage"/>
+    <functioncall functionName="enableWrite"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="frequency"/>
+    <functioncall functionName="i"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="isBusy"/>
+    <functioncall functionName="lenData"/>
+    <functioncall functionName="lenSecureData"/>
+    <functioncall functionName="long"/>
+    <functioncall functionName="page"/>
+    <functioncall functionName="print"/>
+    <functioncall functionName="println"/>
+    <functioncall functionName="readRegisterStatus"/>
+    <functioncall functionName="readSecurityId"/>
+    <functioncall functionName="readSpi"/>
+    <functioncall functionName="registerBlockProtection"/>
+    <functioncall functionName="registerConfiguration"/>
+    <functioncall functionName="secureData"/>
+    <functioncall functionName="sizeof"/>
+    <functioncall functionName="slaveSelectPin"/>
+    <functioncall functionName="transferEnd"/>
+    <functioncall functionName="transferStart"/>
+    <functioncall functionName="while"/>
+    <functioncall functionName="writePage"/>
+    <functioncall functionName="writeSpi"/>
+  </FileInfo>
+</analyzerinfo>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="2288835773">
+  <FileInfo check="ctu">
+<function-call call-id="D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/mcc_generated_files/spi1.h:207:9" call-funcname="SPI1_Exchange8bit" call-argnr="1" filename="D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/SST26WF016B_functions.c" linenr="292" call-argexpr="0" call-argvaluetype="0" call-argvalue="0"/>  </FileInfo>
+  <FileInfo check="Null pointer">
+    <unsafe-usage my-id="D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/SST26WF016B_functions.h:19:6" my-argnr="1" my-argname="Manufacturer_Id" filename="D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/SST26WF016B_functions.c" linenr="84"/>
+    <unsafe-usage my-id="D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/SST26WF016B_functions.h:19:6" my-argnr="2" my-argname="Device_Type" filename="D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/SST26WF016B_functions.c" linenr="85"/>
+    <unsafe-usage my-id="D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/SST26WF016B_functions.h:19:6" my-argnr="3" my-argname="Device_Id" filename="D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/SST26WF016B_functions.c" linenr="86"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="SPI_Read_Status_Register" lineNumber="12"/>
+    <functiondecl functionName="SPI_Read_Configuration_Register" lineNumber="27"/>
+    <functiondecl functionName="SPI_WREN" lineNumber="46"/>
+    <functiondecl functionName="SPI_WRDI" lineNumber="59"/>
+    <functiondecl functionName="SPI_Jedec_ID_Read" lineNumber="77"/>
+    <functiondecl functionName="SPI_Read" lineNumber="101"/>
+    <functiondecl functionName="SPI_Read_Cont" lineNumber="126"/>
+    <functiondecl functionName="SPI_HighSpeed_Read" lineNumber="151"/>
+    <functiondecl functionName="SPI_HighSpeed_Read_Cont" lineNumber="176"/>
+    <functiondecl functionName="SPI_Page_Program" lineNumber="211"/>
+    <functiondecl functionName="SPI_Chip_Erase" lineNumber="235"/>
+    <functiondecl functionName="SPI_Sector_Erase" lineNumber="251"/>
+    <functiondecl functionName="SPI_Block_Erase" lineNumber="272"/>
+    <functiondecl functionName="SPI_NoOp" lineNumber="289"/>
+    <functiondecl functionName="SPI_ResetEn" lineNumber="304"/>
+    <functiondecl functionName="SPI_Reset" lineNumber="322"/>
+    <functiondecl functionName="SPI_Write_Suspend" lineNumber="337"/>
+    <functiondecl functionName="SPI_Write_Resume" lineNumber="352"/>
+    <functiondecl functionName="SPI_Write_Status_Register" lineNumber="367"/>
+    <functiondecl functionName="SPI_ReadSID" lineNumber="388"/>
+    <functiondecl functionName="SPI_ProgSID" lineNumber="419"/>
+    <functiondecl functionName="SPI_LockSID" lineNumber="454"/>
+    <functiondecl functionName="SPI_ReadBlockProtection" lineNumber="472"/>
+    <functiondecl functionName="SPI_WriteBlockProtection" lineNumber="498"/>
+    <functiondecl functionName="SPI_Global_Block_Protection_Unlock" lineNumber="519"/>
+    <functiondecl functionName="SPI_LockBlockProtection" lineNumber="535"/>
+    <functiondecl functionName="SPI_NonVolWriteLockProtection" lineNumber="554"/>
+    <functiondecl functionName="SPI_Wait_Busy" lineNumber="581"/>
+    <functiondecl functionName="SPI_SFDP_Read" lineNumber="593"/>
+    <functiondecl functionName="SPI_DPD" lineNumber="615"/>
+    <functiondecl functionName="SPI_RDPD" lineNumber="627"/>
+    <functioncall functionName="SPI1_Exchange8bit"/>
+    <functioncall functionName="SPI_Read_Status_Register"/>
+    <functioncall functionName="data1"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="i"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="security_length"/>
+    <functioncall functionName="while"/>
+  </FileInfo>
+</analyzerinfo>

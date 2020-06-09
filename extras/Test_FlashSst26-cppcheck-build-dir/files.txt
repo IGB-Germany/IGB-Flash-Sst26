@@ -1,0 +1,20 @@
+FlashSst26.a1::D:/Arduino/Libraries in Development/Test_FlashSst26/FlashSst26.cpp
+printSerialFlashSst26.a1::D:/Arduino/Libraries in Development/Test_FlashSst26/printSerialFlashSst26.cpp
+testFlashSst26.a1::D:/Arduino/Libraries in Development/Test_FlashSst26/testFlashSst26.cpp
+SST26WF016B.a1::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001 Pictail Plus connector/SST26WF016B.c
+SST26WF016B.a2::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface A/SST26WF016B Driver/SST26WF016B.c
+SST26WF016B_functions.a1::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface A/SST26WF016B_SPI_Driver/SST26WF016B_functions.c
+main.a1::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface A/SST26WF016B_SPI_Driver/main.c
+interrupt_manager.a1::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface A/SST26WF016B_SPI_Driver/mcc_generated_files/interrupt_manager.c
+mcc.a1::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface A/SST26WF016B_SPI_Driver/mcc_generated_files/mcc.c
+pin_manager.a1::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface A/SST26WF016B_SPI_Driver/mcc_generated_files/pin_manager.c
+spi2.a1::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface A/SST26WF016B_SPI_Driver/mcc_generated_files/spi2.c
+traps.a1::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface A/SST26WF016B_SPI_Driver/mcc_generated_files/traps.c
+SST26WF016B.a3::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B Driver/SST26WF016B.c
+SST26WF016B_functions.a2::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/SST26WF016B_functions.c
+main.a2::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/main.c
+interrupt_manager.a2::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/mcc_generated_files/interrupt_manager.c
+mcc.a2::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/mcc_generated_files/mcc.c
+pin_manager.a2::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/mcc_generated_files/pin_manager.c
+spi1.a1::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/mcc_generated_files/spi1.c
+traps.a2::D:/Arduino/Libraries in Development/Test_FlashSst26/extras/Device drivers SST26WF016B/Device drivers SST26WF016B/for DM240001-2 mikroBus interface B/SST26WF016B SPI_Driver/mcc_generated_files/traps.c

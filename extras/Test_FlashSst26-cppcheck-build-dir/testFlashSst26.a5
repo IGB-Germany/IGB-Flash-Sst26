@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="2019592306">
+  <FileInfo check="Bounds checking">
+    <ArraySize array="testArray" size="4294967295"/>
+  </FileInfo>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;FlashSst26&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;FlashSst26&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\testFlashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_0.1.0\FlashSst26_0.1.0.h" line="114"/>
+            <symbol>FlashSst26</symbol>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="testSequence" lineNumber="19"/>
+    <functiondecl functionName="testReset" lineNumber="38"/>
+    <functiondecl functionName="testReadIds" lineNumber="46"/>
+    <functiondecl functionName="testRegisterRead" lineNumber="55"/>
+    <functiondecl functionName="testRegisterWrite" lineNumber="68"/>
+    <functiondecl functionName="testPowerDown" lineNumber="105"/>
+    <functiondecl functionName="testErase" lineNumber="117"/>
+    <functiondecl functionName="testWriteReadByte" lineNumber="150"/>
+    <functiondecl functionName="testWriteReadPage" lineNumber="174"/>
+    <functiondecl functionName="testWriteReadPages" lineNumber="201"/>
+    <functiondecl functionName="testWriteReadLargeArray" lineNumber="225"/>
+    <functiondecl functionName="testSecurityDataRead" lineNumber="243"/>
+    <functioncall functionName="FlashSst26"/>
+    <functioncall functionName="addressStart"/>
+    <functioncall functionName="addressTestArray"/>
+    <functioncall functionName="addressTestData"/>
+    <functioncall functionName="dataReceived"/>
+    <functioncall functionName="dataSend"/>
+    <functioncall functionName="disableGlobalBlockProtection"/>
+    <functioncall functionName="enableDeepPowerDown"/>
+    <functioncall functionName="erase4kByte"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="i"/>
+    <functioncall functionName="printByte"/>
+    <functioncall functionName="printData"/>
+    <functioncall functionName="printId"/>
+    <functioncall functionName="printRegisterBlockProtection"/>
+    <functioncall functionName="printRegisterConfiguration"/>
+    <functioncall functionName="printRegisterStatus"/>
+    <functioncall functionName="printUniqueId"/>
+    <functioncall functionName="readByte"/>
+    <functioncall functionName="readData"/>
+    <functioncall functionName="readId"/>
+    <functioncall functionName="readPage"/>
+    <functioncall functionName="readRegisterBlockProtection"/>
+    <functioncall functionName="readRegisterConfiguration"/>
+    <functioncall functionName="readRegisterStatus"/>
+    <functioncall functionName="readSecurityData"/>
+    <functioncall functionName="readUniqueId"/>
+    <functioncall functionName="registerBlockProtection"/>
+    <functioncall functionName="registerConfiguration"/>
+    <functioncall functionName="releaseDeepPowerDown"/>
+    <functioncall functionName="reset"/>
+    <functioncall functionName="sizeTestArray"/>
+    <functioncall functionName="sizeof"/>
+    <functioncall functionName="testAddressData"/>
+    <functioncall functionName="testArray"/>
+    <functioncall functionName="testData"/>
+    <functioncall functionName="testDataLen"/>
+    <functioncall functionName="testLenData"/>
+    <functioncall functionName="testReadIds"/>
+    <functioncall functionName="testRegisterRead"/>
+    <functioncall functionName="while"/>
+    <functioncall functionName="writeByte"/>
+    <functioncall functionName="writeData"/>
+    <functioncall functionName="writePage"/>
+    <functioncall functionName="writeRegisterBlockProtection"/>
+    <functioncall functionName="writeRegisterConfiguration"/>
+  </FileInfo>
+</analyzerinfo>

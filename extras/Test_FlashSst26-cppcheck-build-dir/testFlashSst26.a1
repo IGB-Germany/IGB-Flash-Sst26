@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="1872394866">
+  <FileInfo check="Bounds checking">
+    <ArraySize array="testArray" size="4294967295"/>
+  </FileInfo>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;FlashSst26&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;FlashSst26&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\testFlashSst26.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\FlashSst26.h" line="97"/>
+            <symbol>FlashSst26</symbol>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="test_sequence" lineNumber="17"/>
+    <functiondecl functionName="test_writeData" lineNumber="47"/>
+    <functiondecl functionName="test_readData" lineNumber="63"/>
+    <functiondecl functionName="test_writeDataSecurity" lineNumber="74"/>
+    <functiondecl functionName="test_readDataSecurity" lineNumber="85"/>
+    <functiondecl functionName="test_writeRegisterConfiguration" lineNumber="95"/>
+    <functiondecl functionName="test_writeRegisterBlockProtection" lineNumber="108"/>
+    <functiondecl functionName="test_erase" lineNumber="122"/>
+    <functiondecl functionName="test_readPage" lineNumber="150"/>
+    <functiondecl functionName="test_readPages" lineNumber="165"/>
+    <functiondecl functionName="test_writePage" lineNumber="174"/>
+    <functiondecl functionName="test_writePages" lineNumber="198"/>
+    <functiondecl functionName="test_disableGlobalBlockProtection" lineNumber="207"/>
+    <functiondecl functionName="test_reset" lineNumber="213"/>
+    <functiondecl functionName="test_readIds" lineNumber="223"/>
+    <functiondecl functionName="test_readRegisterStatus" lineNumber="229"/>
+    <functiondecl functionName="test_readRegisterConfiguration" lineNumber="234"/>
+    <functiondecl functionName="test_readRegisterBlockProtection" lineNumber="239"/>
+    <functiondecl functionName="test_powerDownUp" lineNumber="244"/>
+    <functioncall functionName="F"/>
+    <functioncall functionName="FlashSst26"/>
+    <functioncall functionName="address"/>
+    <functioncall functionName="addressTestArray"/>
+    <functioncall functionName="data"/>
+    <functioncall functionName="disableGlobalBlockProtection"/>
+    <functioncall functionName="enableDeepPowerDown"/>
+    <functioncall functionName="erase4kByte"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="i"/>
+    <functioncall functionName="lenData"/>
+    <functioncall functionName="lenDataSec"/>
+    <functioncall functionName="pageSize"/>
+    <functioncall functionName="printAddress"/>
+    <functioncall functionName="printData"/>
+    <functioncall functionName="printId"/>
+    <functioncall functionName="printRegisterBlockProtection"/>
+    <functioncall functionName="printRegisterConfiguration"/>
+    <functioncall functionName="printRegisterStatus"/>
+    <functioncall functionName="printUniqueId"/>
+    <functioncall functionName="println"/>
+    <functioncall functionName="readData"/>
+    <functioncall functionName="readId"/>
+    <functioncall functionName="readPage"/>
+    <functioncall functionName="readRegisterBlockProtection"/>
+    <functioncall functionName="readRegisterConfiguration"/>
+    <functioncall functionName="readRegisterStatus"/>
+    <functioncall functionName="readSecurityData"/>
+    <functioncall functionName="readUniqueId"/>
+    <functioncall functionName="registerBlockProtection"/>
+    <functioncall functionName="registerConfiguration"/>
+    <functioncall functionName="releaseDeepPowerDown"/>
+    <functioncall functionName="reset"/>
+    <functioncall functionName="sizePage"/>
+    <functioncall functionName="sizeTestArray"/>
+    <functioncall functionName="testData"/>
+    <functioncall functionName="testDataLen"/>
+    <functioncall functionName="testPage"/>
+    <functioncall functionName="test_readIds"/>
+    <functioncall functionName="test_readPage"/>
+    <functioncall functionName="test_reset"/>
+    <functioncall functionName="test_writePage"/>
+    <functioncall functionName="writePage"/>
+    <functioncall functionName="writeRegisterBlockProtection"/>
+    <functioncall functionName="writeRegisterConfiguration"/>
+    <functioncall functionName="writeSecurityData"/>
+  </FileInfo>
+</analyzerinfo>

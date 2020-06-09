@@ -1,0 +1,73 @@
+#######################################
+# FlashSst26
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1) ORANGE
+# This makes a strong Orange -- 1 Tab and KEYWORD1
+#######################################
+FlashSst26	KEYWORD1
+
+
+#######################################
+# Methods and Functions (KEYWORD2) ORANGE
+# This makes a dim Orange -- 1 Tabs and KEYWORD2
+#######################################
+id_t	KEYWORD2
+uniqueId_t	KEYWORD2
+registerStatus_t	KEYWORD2
+registerConfiguration_t	KEYWORD2
+registerBlockProtection_t	KEYWORD2
+
+enableWrite	KEYWORD2
+disableWrite	KEYWORD2
+readId		KEYWORD2
+readUniqueId		KEYWORD2
+readRegisterStatus		KEYWORD2
+readRegisterConfiguration		KEYWORD2
+readRegisterBlockProtection		KEYWORD2
+
+writeRegisterConfiguration		KEYWORD2
+writeRegisterBlockProtection		KEYWORD2
+disableGlobalBlockProtection		KEYWORD2
+readSecurityData		KEYWORD2
+writeSecurityData		KEYWORD2
+lockSecurityData		KEYWORD2
+
+enableDeepPowerDown		KEYWORD2
+releaseDeepPowerDown		KEYWORD2
+reset		KEYWORD2
+isBusy		KEYWORD2
+erase4kByte		KEYWORD2
+erase8kByte		KEYWORD2
+erase32kByte		KEYWORD2
+erase64kByte		KEYWORD2
+eraseAll		KEYWORD2
+
+writeData		KEYWORD2
+readData		KEYWORD2
+
+suspendWrite		KEYWORD2
+resumeWrite		KEYWORD2
+readSfdpTable		KEYWORD2
+disableBlockProtection		KEYWORD2
+writeProtectBlockProtectionVolatile		KEYWORD2
+lockBlockProtectionOtp		KEYWORD2
+#######################################
+# Methods and Functions (KEYWORD3) GREEN
+# This makes a 
+#######################################
+
+
+#######################################
+# Constants (LITERAL1)
+# This makes dim Blue/Green -- 1 Tab and LITERAL1
+#######################################
+
+
+
+
+
+
+
+

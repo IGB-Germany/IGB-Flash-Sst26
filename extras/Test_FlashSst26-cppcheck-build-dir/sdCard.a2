@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="830666241">
+        <error id="bufferAccessOutOfBounds" severity="error" msg="Buffer is accessed out of bounds: string" verbose="Buffer is accessed out of bounds: string">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_1.0\sdCard.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_1.0\sdCard.cpp" line="116"/>
+            <symbol>string</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;SdCard::_sizeFile&apos; is not initialized in the constructor." verbose="Member variable &apos;SdCard::_sizeFile&apos; is not initialized in the constructor." cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_1.0\sdCard.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_1.0\sdCard.cpp" line="6"/>
+            <symbol>SdCard::_sizeFile</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;SdCard::_volumesize&apos; is not initialized in the constructor." verbose="Member variable &apos;SdCard::_volumesize&apos; is not initialized in the constructor." cwe="398" inconclusive="true">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_1.0\sdCard.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_1.0\sdCard.cpp" line="6"/>
+            <symbol>SdCard::_volumesize</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;SdCard::_sizeFile&apos; is not initialized in the constructor." verbose="Member variable &apos;SdCard::_sizeFile&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_1.0\sdCard.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_1.0\sdCard.cpp" line="11"/>
+            <symbol>SdCard::_sizeFile</symbol>
+        </error>
+        <error id="uninitMemberVar" severity="warning" msg="Member variable &apos;SdCard::_volumesize&apos; is not initialized in the constructor." verbose="Member variable &apos;SdCard::_volumesize&apos; is not initialized in the constructor." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_1.0\sdCard.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_1.0\sdCard.cpp" line="11"/>
+            <symbol>SdCard::_volumesize</symbol>
+        </error>
+        <error id="noExplicitConstructor" severity="style" msg="Class &apos;SdCard&apos; has a constructor with 1 argument that is not explicit." verbose="Class &apos;SdCard&apos; has a constructor with 1 argument that is not explicit. Such constructors should in general be explicit for type safety reasons. Using the explicit keyword in the constructor means some mistakes when using the class can be avoided." cwe="398">
+            <location file0="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_1.0\sdCard.cpp" file="D:\Arduino\Libraries in Development\Test_FlashSst26\archiv\flashSst26_1.0\sdCard.h" line="16"/>
+            <symbol>SdCard</symbol>
+        </error>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="printFile" lineNumber="78"/>
+    <functiondecl functionName="getVolume" lineNumber="130"/>
+    <functiondecl functionName="getFileNamesRoot" lineNumber="160"/>
+    <functiondecl functionName="fileOpen" lineNumber="172"/>
+    <functiondecl functionName="fileClose" lineNumber="180"/>
+    <functiondecl functionName="getSizeFile" lineNumber="190"/>
+    <functioncall functionName="ComDriverSpi"/>
+    <functioncall functionName="DEC"/>
+    <functioncall functionName="F"/>
+    <functioncall functionName="LS_SIZE"/>
+    <functioncall functionName="SPI_QUARTER_SPEED"/>
+    <functioncall functionName="SdCard"/>
+    <functioncall functionName="_card"/>
+    <functioncall functionName="_volume"/>
+    <functioncall functionName="_volumesize"/>
+    <functioncall functionName="available"/>
+    <functioncall functionName="begin"/>
+    <functioncall functionName="blocksPerCluster"/>
+    <functioncall functionName="break"/>
+    <functioncall functionName="chipSelect"/>
+    <functioncall functionName="close"/>
+    <functioncall functionName="clusterCount"/>
+    <functioncall functionName="data"/>
+    <functioncall functionName="default"/>
+    <functioncall functionName="exists"/>
+    <functioncall functionName="fatType"/>
+    <functioncall functionName="fileName"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="init"/>
+    <functioncall functionName="ls"/>
+    <functioncall functionName="myFile"/>
+    <functioncall functionName="myFileSize"/>
+    <functioncall functionName="nameFile"/>
+    <functioncall functionName="open"/>
+    <functioncall functionName="openRoot"/>
+    <functioncall functionName="position"/>
+    <functioncall functionName="print"/>
+    <functioncall functionName="println"/>
+    <functioncall functionName="read"/>
+    <functioncall functionName="size"/>
+    <functioncall functionName="slaveSelectPin"/>
+    <functioncall functionName="sprintf"/>
+    <functioncall functionName="string"/>
+    <functioncall functionName="switch"/>
+    <functioncall functionName="type"/>
+    <functioncall functionName="volumesize"/>
+    <functioncall functionName="while"/>
+  </FileInfo>
+</analyzerinfo>

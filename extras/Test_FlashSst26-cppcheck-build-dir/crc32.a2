@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<analyzerinfo checksum="2294245689">
+  <FileInfo check="Bounds checking">
+    <ArraySize array="crc32Lookup" size="256"/>
+  </FileInfo>
+  <FileInfo check="CheckUnusedFunctions">
+    <functiondecl functionName="compareCrc32" lineNumber="8"/>
+    <functiondecl functionName="crc32Bitwise" lineNumber="16"/>
+    <functiondecl functionName="printCrc32" lineNumber="77"/>
+    <functiondecl functionName="printComparisonCrc32" lineNumber="90"/>
+    <functioncall functionName="F"/>
+    <functioncall functionName="crc32"/>
+    <functioncall functionName="data"/>
+    <functioncall functionName="for"/>
+    <functioncall functionName="if"/>
+    <functioncall functionName="lowestBit"/>
+    <functioncall functionName="print"/>
+    <functioncall functionName="println"/>
+    <functioncall functionName="sprintf"/>
+    <functioncall functionName="string"/>
+    <functioncall functionName="while"/>
+  </FileInfo>
+</analyzerinfo>
