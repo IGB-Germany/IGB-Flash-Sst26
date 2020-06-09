@@ -7,11 +7,10 @@ The SST26WF is a 1,8V Flash Memory Circuit.
 
 This library allows the user to:
 
-* General methods for classes
-* Get various information
-* Configure
-* Read data
-* Write data
+* Get various information about the circuit
+* Configure the circuit
+* Read data from memory
+* Write data to memory
 
 Examples are included to get you started.
 
