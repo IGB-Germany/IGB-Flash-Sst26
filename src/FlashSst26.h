@@ -160,7 +160,9 @@ class FlashSst26
     //Read data
     void readData(uint32_t adressStart, uint8_t data[], uint32_t lenData);
     void readPage(uint32_t adressStart, uint8_t page[]);
-    void readBytes(uint32_t adressStart, uint8_t bytes[], uint8_t numBytes);
+    void readBytes(uint32_t adressStart, uint8_t bytes[], uint16_t numBytes);
+
+    uint32_t calculateCrc32(const void* data, uint32_t lenData, uint32_t previousCrc32);
     
     //Enable deep power down
     bool enableDeepPowerDown(void);
@@ -185,28 +187,26 @@ class FlashSst26
 
     //address we are working on
     uint32_t _address;
+    
     //Size of buffer we are working on
-    static const uint16_t SIZE_PAGE = 0x100;
-
+    enum SIZE_PAGE {SIZE_PAGE = 0x100};
+    
     //Max numbers of retry when chip is busy
-    const uint8_t maxRetry = 10;
+    enum MAX_RETRY {MAX_RETRY = 10};
 
-    //Id
-    id_t _id;
-    //unique Id
-    uniqueId_t _uniqueId;
-    /*Register status*/
-    registerStatus_t _registerStatus;
-    /*Register configuration*/
-    registerConfiguration_t _registerConfiguration;
-    /*Register block protection*/
+    //ids
+    id_t                      _id;
+    uniqueId_t                _uniqueId;
+    
+    //registers
+    registerStatus_t          _registerStatus;
+    registerConfiguration_t   _registerConfiguration;
     registerBlockProtection_t _registerBlockProtection;
+    
+    //security data
+    uint8_t                   _securityData;
 
-    /*security data buffer*/
-    uint8_t _securityDataBuffer;
-    // uint8_t _sfdpBuffer[1];
-
-    /*Durations in ms*/
+    //Durations in ms
     const uint8_t durationWritePage             = 2;
     const uint8_t durationWriteStatusRegister   = 10;
 

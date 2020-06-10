@@ -220,10 +220,10 @@ bool FlashSst26::writeRegisterBlockProtection(registerBlockProtection_t register
   _comDriverSpi.writeSpi(data, sizeof(data));
 
   /*retry until device not busy anymore*/
-  for (uint8_t retry = 0; retry < maxRetry; retry++)
+  for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
     if (!isBusy()) break;
-    if (retry == maxRetry)return false;
+    if (retry == MAX_RETRY)return false;
   }
 
   return true;
@@ -244,10 +244,10 @@ bool FlashSst26::writeByte(uint32_t adressStart, uint8_t data[])
   _comDriverSpi.writeSpi(cmd, sizeof(cmd));
 
   /*retry until device not busy anymore*/
-  for (uint8_t retry = 0; retry < maxRetry; retry++)
+  for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
     if (!isBusy()) break;
-    if (retry == maxRetry)return false;
+    if (retry == MAX_RETRY)return false;
   }
   return true;
 }
@@ -287,11 +287,11 @@ bool FlashSst26::writePage(uint32_t addressStart, uint8_t page[])
   _comDriverSpi.writeSpi(page, SIZE_PAGE, ComDriverSpi::transferEnd);
 
   /*retry until device not busy anymore*/
-  for (uint8_t retry = 0; retry < maxRetry; retry++)
+  for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
     delay(durationWritePage);
     if (!isBusy()) break;
-    if (retry == maxRetry)return false;
+    if (retry == MAX_RETRY)return false;
   }
   return true;
 }
@@ -350,38 +350,64 @@ bool FlashSst26::writeData(uint32_t addressStart, uint8_t data[], uint32_t lenDa
 void FlashSst26::readData(uint32_t adressStart, uint8_t data[], uint32_t lenData)
 {
   //analyze lenData
-  if(lenData == 0) return;
-  
-  uint8_t modulo = lenData % SIZE_PAGE;
-  uint8_t numPages = 0;
-  uint8_t restBytes = lenData - modulo;
-
-  //multiple pages ?
-  if (modulo == 0)
+  //nothing
+  if (lenData == 0)
   {
-    numPages = lenData / SIZE_PAGE;
-    for (uint8_t i = 0; i < numPages; i++)
-    {
-      //read page wise
-      readPage(adressStart + i * SIZE_PAGE, data + i * SIZE_PAGE);
-    }
+    return;
   }
 
-  //some bytes left
-  else if (modulo != 0)
+  //multiple bytes up to 0x100
+  else if (lenData > 0 && lenData <= 0x100)
   {
-    //subtract the restbytes
-    numPages = (lenData - restBytes) / SIZE_PAGE;
+    for(uint32_t i = 0; i< lenData; i++)  data[i] = 0xff;
+    
+    readBytes(adressStart, data, lenData);
+  }
 
-    for (uint8_t i = 0; i < numPages; i++)
+  //More than a page
+  else if (lenData > 0x100)
+  {
+    uint8_t numPages = 0;
+    uint8_t modulo = lenData % SIZE_PAGE;
+
+    //multiple pages
+    if (modulo == 0)
     {
-      //read page wise
-      readPage(adressStart + i * SIZE_PAGE, data + i * SIZE_PAGE);
+      numPages = lenData / SIZE_PAGE;
+      for (uint8_t i = 0; i < numPages; i++)
+      {
+        for(uint32_t j = 0; j< lenData; j++)  data[j + i * SIZE_PAGE] = 0xff;
+        //read page wise
+        readPage(adressStart + i * SIZE_PAGE, data + i * SIZE_PAGE);
+      }
     }
 
-    //read restbytes
-    readBytes(adressStart + numPages * SIZE_PAGE, data + numPages * SIZE_PAGE, restBytes);
+    //multiple pages plus some bytes
+    else if (modulo != 0)
+    {
+      uint8_t restBytes = lenData - modulo;
+      //subtract the restbytes
+      numPages = (lenData - restBytes) / SIZE_PAGE;
+
+      for (uint8_t i = 0; i < numPages; i++)
+      {
+        for(uint32_t j = 0; j< lenData; j++)  data[j + i * SIZE_PAGE] = 0xff;
+        //read page wise
+        readPage(adressStart + i * SIZE_PAGE, data + i * SIZE_PAGE);
+      }
+
+      //read restbytes
+      for(uint32_t k = 0; k< restBytes; k++)  data[k + numPages * SIZE_PAGE] = 0xff;
+      readBytes(adressStart + numPages * SIZE_PAGE, data + numPages * SIZE_PAGE, restBytes);
+    }
   }
+ 
+  //error
+  else
+  {
+    return;
+  }
+
 }
 
 void FlashSst26::readPage(uint32_t addressStart, uint8_t page[])
@@ -397,20 +423,20 @@ void FlashSst26::readPage(uint32_t addressStart, uint8_t page[])
   _comDriverSpi.readSpi(page, SIZE_PAGE, ComDriverSpi::transferEnd);
 
   //retry until device not busy anymore
-  for (uint8_t retry = 0; retry < maxRetry; retry++)
+  for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
     if (!isBusy()) break;
-    if (retry == maxRetry)return;
+    if (retry == MAX_RETRY)return;
   }
 }
 
-void FlashSst26::readBytes(uint32_t adressStart, uint8_t bytes[], uint8_t numBytes)
-{
+void FlashSst26::readBytes(uint32_t adressStart, uint8_t bytes[], uint16_t numBytes)
+{  
   //nothing to read
   if (numBytes == 0) return;
 
   //initalize
-  for (uint8_t i = 0; i < numBytes; i++) bytes[i] = {0xff};
+  for (uint16_t i = 0; i < numBytes; i++) bytes[i] = {0xff};
 
   uint8_t cmd[4];
 
@@ -423,10 +449,10 @@ void FlashSst26::readBytes(uint32_t adressStart, uint8_t bytes[], uint8_t numByt
   _comDriverSpi.readSpi(bytes, numBytes, ComDriverSpi::transferEnd);
 
   //retry until device not busy anymore
-  for (uint8_t retry = 0; retry < maxRetry; retry++)
+  for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
     if (!isBusy()) break;
-    if (retry == maxRetry)return;
+    if (retry == MAX_RETRY)return;
   }
 
 }
@@ -454,11 +480,11 @@ bool FlashSst26::erase4kByte(uint32_t addressStart)
   _comDriverSpi.writeSpi(cmd, sizeof(cmd));
 
   /*retry until device not busy anymore*/
-  for (uint8_t retry = 0; retry < maxRetry; retry++)
+  for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
     delay(durationEraseSector);
     if (!isBusy()) break;
-    if (retry == maxRetry)return false;
+    if (retry == MAX_RETRY)return false;
   }
   return true;
 }
@@ -489,11 +515,11 @@ bool FlashSst26::erase8kByte(uint32_t addressStart)
   _comDriverSpi.writeSpi(cmd, sizeof(cmd));
 
   /*retry until device not busy anymore*/
-  for (uint8_t retry = 0; retry < maxRetry; retry++)
+  for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
     delay(durationEraseSector);
     if (!isBusy()) break;
-    if (retry == maxRetry)return false;
+    if (retry == MAX_RETRY)return false;
   }
 
   return true;
@@ -510,11 +536,11 @@ bool FlashSst26::eraseAll()
   _comDriverSpi.writeSpi(cmd, sizeof(cmd));
 
   /*retry until device not busy anymore*/
-  for (uint8_t retry = 0; retry < maxRetry; retry++)
+  for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
     delay(durationEraseAll);
     if (!isBusy()) break;
-    if (retry == maxRetry)return false;
+    if (retry == MAX_RETRY)return false;
   }
 
   return true;
@@ -632,4 +658,32 @@ void FlashSst26::setFrequency(uint32_t frequency)
 uint32_t FlashSst26::getFrequency()
 {
   return _comDriverSpi.getFrequency();
+}
+
+uint32_t FlashSst26::calculateCrc32(const void* data, uint32_t lenData, uint32_t previousCrc32)
+{
+  
+  readData(_address, data, lenData);
+  
+  const uint32_t polynomial = 0xEDB88320;
+  uint32_t crc = ~previousCrc32;
+  uint8_t* current = (unsigned char*) data;
+
+  while (lenData--)
+  {
+    crc ^= *current++;
+    //all bits
+    for (uint8_t j = 0; j < 8; j++)
+    {
+      //last bit is 1
+      if (crc & 1)
+        //shift and ^
+        crc = (crc >> 1) ^ polynomial;
+      //last bit is 0
+      else
+        //shift
+        crc =  crc >> 1;
+    }
+  }
+  return ~crc;
 }

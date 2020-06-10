@@ -1,14 +1,14 @@
-IGB Flash SST26
-========================================
+IGB Arduino Library for SPI Flash Memory SST26WF
+================================================
 
 [*Datasheet Flash Memory SST26WF016BA*] (http://ww1.microchip.com/downloads/en/DeviceDoc/20005013D.pdf)
 
-The SST26WF is a 1,8V Flash Memory Circuit.
+The SST26WF is a low voltage (1,8V) SPI based Flash Memory circuit.
 
 This library allows the user to:
 
-* Get various information about the circuit
-* Configure the circuit
+* Get various information about the memory (Ids, security data)
+* Configuration of the memory (protection, speed, sleep)
 * Read data from memory
 * Write data to memory
 
