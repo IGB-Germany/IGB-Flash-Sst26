@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<analyzerinfo checksum="3804985111">
-  <FileInfo check="CheckUnusedFunctions">
-    <functiondecl functionName="PIN_MANAGER_Initialize" lineNumber="57"/>
-  </FileInfo>
-</analyzerinfo>

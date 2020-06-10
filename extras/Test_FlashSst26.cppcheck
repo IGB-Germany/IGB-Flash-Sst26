@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="1">
-    <builddir>Test_FlashSst26-cppcheck-build-dir</builddir>
-    <platform>Unspecified</platform>
-    <analyze-all-vs-configs>true</analyze-all-vs-configs>
-    <paths>
-        <dir name="D:/Arduino/Libraries in Development/Test_FlashSst26"/>
-    </paths>
-</project>

@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<analyzerinfo checksum="2789524287">
-  <FileInfo check="CheckUnusedFunctions">
-    <functiondecl functionName="INTERRUPT_Initialize" lineNumber="54"/>
-  </FileInfo>
-</analyzerinfo>
