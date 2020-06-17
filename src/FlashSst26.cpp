@@ -6,10 +6,10 @@ FlashSst26::FlashSst26()
 {
   _address                  = 0;
   _id                       = {0xffffff, 0xff, 0xff, 0xff};
+  _uniqueId                 = {0xffffffff, 0xffffffff};
   _registerStatus           = {1, 1, 1, 1, 1, 1, 1, 1};
   _registerConfiguration    = {1, 1, 1, 1, 1, 1, 1, 1};
   _registerBlockProtection  = {0, 0, 0, 0, 0, 0};
-  _uniqueId                 = {0xffffffff, 0xffffffff};
 
 }
 
@@ -18,10 +18,11 @@ FlashSst26::FlashSst26(uint8_t slaveSelectPin)
 {
   _address                  = 0;
   _id                       = {0xffffff, 0xff, 0xff, 0xff};
+  _uniqueId                 = {0xffffffff, 0xffffffff};
   _registerStatus           = {1, 1, 1, 1, 1, 1, 1, 1};
   _registerConfiguration    = {1, 1, 1, 1, 1, 1, 1, 1};
   _registerBlockProtection  = {0, 0, 0, 0, 0, 0};
-  _uniqueId                 = {0xffffffff, 0xffffffff};
+
 }
 
 FlashSst26::FlashSst26(uint8_t slaveSelectPin, uint32_t  frequency)
@@ -29,10 +30,11 @@ FlashSst26::FlashSst26(uint8_t slaveSelectPin, uint32_t  frequency)
 {
   _address                  = 0;
   _id                       = {0xffffff, 0xff, 0xff, 0xff};
+  _uniqueId                 = {0xffffffff, 0xffffffff};
   _registerStatus           = {1, 1, 1, 1, 1, 1, 1, 1};
   _registerConfiguration    = {1, 1, 1, 1, 1, 1, 1, 1};
   _registerBlockProtection  = {0, 0, 0, 0, 0, 0};
-  _uniqueId                 = {0xffffffff, 0xffffffff};
+
 }
 
 bool FlashSst26::enableWrite(void)
@@ -252,8 +254,6 @@ bool FlashSst26::writeByte(uint32_t adressStart, uint8_t data[])
   return true;
 }
 
-
-
 bool FlashSst26::writePage(uint32_t addressStart, uint8_t page[])
 {
   /*Adress has to start at begin of page*/
@@ -286,10 +286,10 @@ bool FlashSst26::writePage(uint32_t addressStart, uint8_t page[])
   _comDriverSpi.writeSpi(cmd, sizeof(cmd), ComDriverSpi::transferStart);
   _comDriverSpi.writeSpi(page, SIZE_PAGE, ComDriverSpi::transferEnd);
 
-  /*retry until device not busy anymore*/
+  //retry until device not busy anymore
   for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
-    delay(durationWritePage);
+    delay(DURATION_1_MILLIS);
     if (!isBusy()) break;
     if (retry == MAX_RETRY)return false;
   }
@@ -359,8 +359,8 @@ void FlashSst26::readData(uint32_t adressStart, uint8_t data[], uint32_t lenData
   //multiple bytes up to 0x100
   else if (lenData > 0 && lenData <= 0x100)
   {
-    for(uint32_t i = 0; i< lenData; i++)  data[i] = 0xff;
-    
+    for (uint32_t i = 0; i < lenData; i++)  data[i] = 0xff;
+
     readBytes(adressStart, data, lenData);
   }
 
@@ -376,7 +376,7 @@ void FlashSst26::readData(uint32_t adressStart, uint8_t data[], uint32_t lenData
       numPages = lenData / SIZE_PAGE;
       for (uint8_t i = 0; i < numPages; i++)
       {
-        for(uint32_t j = 0; j< lenData; j++)  data[j + i * SIZE_PAGE] = 0xff;
+        for (uint32_t j = 0; j < lenData; j++)  data[j + i * SIZE_PAGE] = 0xff;
         //read page wise
         readPage(adressStart + i * SIZE_PAGE, data + i * SIZE_PAGE);
       }
@@ -391,17 +391,17 @@ void FlashSst26::readData(uint32_t adressStart, uint8_t data[], uint32_t lenData
 
       for (uint8_t i = 0; i < numPages; i++)
       {
-        for(uint32_t j = 0; j< lenData; j++)  data[j + i * SIZE_PAGE] = 0xff;
+        for (uint32_t j = 0; j < lenData; j++)  data[j + i * SIZE_PAGE] = 0xff;
         //read page wise
         readPage(adressStart + i * SIZE_PAGE, data + i * SIZE_PAGE);
       }
 
       //read restbytes
-      for(uint32_t k = 0; k< restBytes; k++)  data[k + numPages * SIZE_PAGE] = 0xff;
+      for (uint32_t k = 0; k < restBytes; k++)  data[k + numPages * SIZE_PAGE] = 0xff;
       readBytes(adressStart + numPages * SIZE_PAGE, data + numPages * SIZE_PAGE, restBytes);
     }
   }
- 
+
   //error
   else
   {
@@ -431,7 +431,7 @@ void FlashSst26::readPage(uint32_t addressStart, uint8_t page[])
 }
 
 void FlashSst26::readBytes(uint32_t adressStart, uint8_t bytes[], uint16_t numBytes)
-{  
+{
   //nothing to read
   if (numBytes == 0) return;
 
@@ -482,7 +482,7 @@ bool FlashSst26::erase4kByte(uint32_t addressStart)
   /*retry until device not busy anymore*/
   for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
-    delay(durationEraseSector);
+    delay(DURATION_25_MILLIS);
     if (!isBusy()) break;
     if (retry == MAX_RETRY)return false;
   }
@@ -517,7 +517,7 @@ bool FlashSst26::erase8kByte(uint32_t addressStart)
   /*retry until device not busy anymore*/
   for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
-    delay(durationEraseSector);
+    delay(DURATION_25_MILLIS);
     if (!isBusy()) break;
     if (retry == MAX_RETRY)return false;
   }
@@ -538,7 +538,7 @@ bool FlashSst26::eraseAll()
   /*retry until device not busy anymore*/
   for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
-    delay(durationEraseAll);
+    delay(DURATION_50_MILLIS);
     if (!isBusy()) break;
     if (retry == MAX_RETRY)return false;
   }
@@ -548,16 +548,19 @@ bool FlashSst26::eraseAll()
 
 uint8_t FlashSst26::readSecurityData(uint32_t addressStart)
 {
-  //User Programmable 0008H to 07FFH
-  if (addressStart < 0x08 || addressStart > 0x07FF) addressStart = 0x08;
 
-  uint8_t cmd[3];
+  //Unique ID Pre-Programmed at factory address 0000 – 0007H
+  //User Programmable address 0008H to 07FFH
+  if (addressStart > 0x07FF) addressStart = 0;
+
+  uint8_t cmd[4];
   //buffer security data
   uint8_t securityData[1] = {0xff};
 
   cmd[0] = READ_SECURITY_DATA;
   cmd[1] = (addressStart) >> 8 & 0xff;
   cmd[2] = (addressStart) & 0xff;
+  cmd[3] = 0xff; //dummy
 
   _comDriverSpi.writeSpi(cmd, sizeof(cmd), ComDriverSpi::transferStart);
   _comDriverSpi.readSpi(securityData, sizeof(securityData), ComDriverSpi::transferEnd);
@@ -660,14 +663,11 @@ uint32_t FlashSst26::getFrequency()
   return _comDriverSpi.getFrequency();
 }
 
-uint32_t FlashSst26::calculateCrc32(const void* data, uint32_t lenData, uint32_t previousCrc32)
+uint32_t FlashSst26::calculateCrc32(const uint8_t data[], uint32_t lenData, uint32_t previousCrc32)
 {
-  
-  readData(_address, data, lenData);
-  
   const uint32_t polynomial = 0xEDB88320;
   uint32_t crc = ~previousCrc32;
-  uint8_t* current = (unsigned char*) data;
+  uint8_t* current = data;
 
   while (lenData--)
   {

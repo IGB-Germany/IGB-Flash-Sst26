@@ -13,7 +13,7 @@
 class PrintSerialFlashSst26
 {
   public:
-
+        
     //Flash specific print functions
     //Print id
     void printId(FlashSst26::id_t id);
@@ -39,9 +39,9 @@ class PrintSerialFlashSst26
     void printData(uint8_t data[], uint32_t lenData, uint8_t bytesPerLine = 16);
     //Print Error message
     void printError(int error = 0);
-    
     //Print message with uint32_t
     void printMessage(char message, uint32_t data, bool hexFormat = false);
+
 };
 
 #endif //PRINT_SERIAL_FLASH_SST26_H

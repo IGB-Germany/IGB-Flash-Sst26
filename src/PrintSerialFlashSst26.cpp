@@ -165,7 +165,11 @@ void PrintSerialFlashSst26::printMessage(char message, uint32_t data, bool hexFo
 {
   Serial.print(message);
   Serial.print(F("\t"));
-  if(hexFormat) Serial.print(F("0x"));
-  Serial.print(data);
+  if (hexFormat)
+  { Serial.print(F("0x"));
+    Serial.print(data, HEX);
+  }
+  else
+    Serial.print(data);
   Serial.println();
 }

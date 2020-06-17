@@ -118,7 +118,7 @@ class FlashSst26
     registerConfiguration_t readRegisterConfiguration();
     /*Read register block protection */
     registerBlockProtection_t readRegisterBlockProtection();
-    
+
     /*Write register configuration*/
     bool writeRegisterConfiguration(registerConfiguration_t registerConfiguration);
     /*Write register block protection*/
@@ -142,37 +142,36 @@ class FlashSst26
         AMS - A16 for 64 KByte
         Remaining addresses are dont care, but must be set to VIL or VIH
     */
-    /*Erase 8kBytes = 0x2000*/
+    //Erase 8kBytes = 0x2000
     bool erase8kByte(uint32_t addressStart);
-    /*Erase 32kBytes = 0x8000*/
+    //Erase 32kBytes = 0x8000
     bool erase32kByte(uint32_t addressStart);
-    /*Erase 64kBytes = 0xFFFF*/
+    //Erase 64kBytes = 0xFFFF
     bool erase64kByte(uint32_t addressStart);
-    /*Erase all*/
+    //Erase all
     bool eraseAll(void);
 
     //Write
     bool writeByte(uint32_t adressStart, uint8_t data[]);
     bool writePage(uint32_t addressStart, uint8_t page[]);
-    /*Write data pagewise*/
+    //Write data pagewise
     bool writeData(uint32_t addressStart, uint8_t data[], uint32_t lenData);
-    
+
     //Read data
     void readData(uint32_t adressStart, uint8_t data[], uint32_t lenData);
     void readPage(uint32_t adressStart, uint8_t page[]);
     void readBytes(uint32_t adressStart, uint8_t bytes[], uint16_t numBytes);
 
-    uint32_t calculateCrc32(const void* data, uint32_t lenData, uint32_t previousCrc32);
-    
+    //Calculate Crc32
+    uint32_t calculateCrc32(const uint8_t data[], uint32_t lenData, uint32_t previousCrc32);
+
     //Enable deep power down
     bool enableDeepPowerDown(void);
     //Release deep power down
     bool releaseDeepPowerDown(void);
-
     //Reset device
     void reset(void);
-
-    /*Test if device is busy*/
+    //Test if device is busy
     bool isBusy(void);
 
     //Set SPI frequency
@@ -182,101 +181,126 @@ class FlashSst26
 
   private:
 
-    /*SPI communication driver class*/
+    //SPI communication driver class
     ComDriverSpi _comDriverSpi;
 
     //address we are working on
     uint32_t _address;
-    
-    //Size of buffer we are working on
-    enum SIZE_PAGE {SIZE_PAGE = 0x100};
-    
-    //Max numbers of retry when chip is busy
-    enum MAX_RETRY {MAX_RETRY = 10};
 
     //ids
     id_t                      _id;
     uniqueId_t                _uniqueId;
-    
+
     //registers
     registerStatus_t          _registerStatus;
     registerConfiguration_t   _registerConfiguration;
     registerBlockProtection_t _registerBlockProtection;
-    
-    //security data
-    uint8_t                   _securityData;
+
+    //Size of buffer we are working on
+    enum SIZE_PAGE {SIZE_PAGE = 0x100};
+
+    //Max numbers of retry when chip is busy
+    enum MAX_RETRY {MAX_RETRY = 10};
 
     //Durations in ms
-    const uint8_t durationWritePage             = 2;
-    const uint8_t durationWriteStatusRegister   = 10;
+    enum DURATIONS
+    {
+      DURATION_1_MILLIS            = 1,//Write page, write sec. id
+      DURATION_25_MILLIS           = 25,//Erase sector, enable write protection
+      DURATION_50_MILLIS           = 50,//Erase all
 
-    const uint8_t durationEraseSector           = 18;
-    const uint8_t durationEraseAll              = 35;
+      //TR(o) Reset to Read (non-data operation) 20 ns
+      //TR(p) Reset Recovery from Program or Suspend 100 μs
+      //TR(e) Reset Recovery from Erase 1 ms
+      //TPD   Power-down Duration 100 ms
 
-    const uint8_t durationWriteSecurityId       = 2;
-    const uint8_t durationWriteSuspend          = 1;
-    const uint8_t durationEnableWriteProtection = 25;
+      //TSE Sector-Erase 25 ms
+      //TBE Block-Erase 25 ms
+      //TSCE Chip-Erase 50 ms
+      //TPP Page-Program 1.5 ms
+      //TPSID Program Security-ID 1.5 ms
+      //TWS Write-Suspend Latency 25 μs
+      //TWpen Write-Protection Enable Bit Latency 25 ms
+    };
 
-    //TR(o) Reset to Read (non-data operation) 20 ns
-    //TR(p) Reset Recovery from Program or Suspend 100 μs
-    //TR(e) Reset Recovery from Erase 1 ms
+    //Commands
+    enum CONFIGURATION_COMMANDS
+    {
+      NO_OPERATION                  = 0x00,
+      DISABLE_WRITE                 = 0x04,
+      ENABLE_WRITE                  = 0x06,
+      //Reset
+      ENABLE_RESET                  = 0x66,
+      RESET                         = 0x99,
+      //Power Saving
+      ENABLE_DEEP_POWER_DOWN        = 0xB9,
+      RELEASE_DEEP_POWER_DOWN       = 0xAB,
+      //Suspend and resume erase or program operation
+      WRITE_SUSPEND                 = 0xB0,
+      WRITE_RESUME                  = 0x30,
+      //QPI
+      ENTER_QPI                     = 0x38,
+      EXIT_QPI                      = 0xFF
+    };
 
-    /*Commands*/
-    /*Configuration*/
-    const uint8_t NO_OPERATION          = 0x00;
-    const uint8_t DISABLE_WRITE         = 0x04;
-    const uint8_t ENABLE_WRITE          = 0x06;
+    enum REGISTER_COMMANDS
+    {
+      READ_STATUS_REGISTER          = 0x05,
+      READ_CONFIGURATION_REGISTER   = 0x35,
+      WRITE_STATUS_REGISTER         = 0x01,
+      WRITE_CONFIGURATION_REGISTER  = 0x01,
+    };
 
-    const uint8_t READ_STATUS_REGISTER  = 0x05;
-    const uint8_t WRITE_STATUS_REGISTER = 0x01;
-    const uint8_t READ_CONFIGURATION_REGISTER   = 0x35;
-    const uint8_t WRITE_CONFIGURATION_REGISTER  = 0x01;
-    /*Identification*/
-    const uint8_t READ_JEDEC_ID         = 0x9F;
-    const uint8_t READ_JEDEC_ID_QUAD    = 0xAF;
-    const uint8_t READ_SFDP             = 0x5A;
-    /*Read*/
-    const uint8_t READ_DATA             = 0x03;
-    const uint8_t READ_DATA_FAST        = 0x0B;
-    const uint8_t READ_DATA_QUAD        = 0x6B;
-    const uint8_t READ_I_O_QUAD         = 0xEB;
-    const uint8_t READ_DATA_DUAL        = 0x3B;
-    const uint8_t READ_I_O_DUAL         = 0xBB;
-    const uint8_t SET_BURST_LENGTH      = 0xC0;
-    const uint8_t READ_BURST_QUAD       = 0x0C;
-    const uint8_t READ_BURST            = 0xEC;
-    /*Write*/
-    const uint8_t WRITE_DATA            = 0x02;
-    const uint8_t WRITE_DATA_PAGE_QUAD  = 0x32;
-    /*Interrupt and resume erase or program operation*/
-    const uint8_t WRITE_SUSPEND         = 0xB0;
-    const uint8_t WRITE_RESUME          = 0x30;
-    /*Erase*/
-    const uint8_t ERASE_4KB             = 0x20;
-    const uint8_t ERASE_8KB             = 0xD8;
-    const uint8_t ERASE_32KB            = 0xD8;
-    const uint8_t ERASE_64KB            = 0xD8;
-    const uint8_t ERASE_ALL             = 0xC7;
-    /*Protection*/
-    const uint8_t READ_BP_REGISTER      = 0x72;
-    const uint8_t WRITE_BP_REGISTER     = 0x42;
-    const uint8_t LOCK_BP_REGISTER      = 0x8D;
-    const uint8_t ENABLE_NON_VOLATILE_BP_REGISTER = 0xE8;
-    const uint8_t DISABLE_GLOBAL_BP_REGISTER = 0x98;
+    enum IDENTIFICATION_COMMANDS
+    {
+      READ_JEDEC_ID        = 0x9F,
+      READ_JEDEC_ID_QUAD   = 0xAF,
+      READ_SFDP            = 0x5A
+    };
 
-    const uint8_t READ_SECURITY_DATA    = 0x88;
-    const uint8_t WRITE_SECURITY_DATA   = 0xA5;
-    const uint8_t LOCK_SECURITY_DATA    = 0x85;
-    /*Power Saving*/
-    const uint8_t ENABLE_DEEP_POWER_DOWN  = 0xB9;
-    const uint8_t RELEASE_DEEP_POWER_DOWN = 0xAB;
-    /*QPI*/
-    const uint8_t ENTER_QPI             = 0x38;
-    const uint8_t EXIT_QPI              = 0xFF;
-    /*Reset*/
-    const uint8_t ENABLE_RESET          = 0x66;
-    const uint8_t RESET                 = 0x99;
+    enum READ_COMMANDS
+    {
+      READ_DATA             = 0x03,
+      READ_DATA_FAST        = 0x0B,
+      READ_DATA_QUAD        = 0x6B,
+      READ_I_O_QUAD         = 0xEB,
+      READ_DATA_DUAL        = 0x3B,
+      READ_I_O_DUAL         = 0xBB,
+      SET_BURST_LENGTH      = 0xC0,
+      READ_BURST_QUAD       = 0x0C,
+      READ_BURST            = 0xEC
+    };
 
+    enum WRITE_COMMANDS
+    {
+      WRITE_DATA            = 0x02,
+      WRITE_DATA_PAGE_QUAD  = 0x32,
+    };
+
+    enum ERASE_COMMANDS
+    {
+      ERASE_4KB             = 0x20,
+      ERASE_8KB             = 0xD8,
+      ERASE_32KB            = 0xD8,
+      ERASE_64KB            = 0xD8,
+      ERASE_ALL             = 0xC7
+    };
+
+    enum PROTECTION_COMMANDS
+    {
+      READ_BP_REGISTER                = 0x72,
+      WRITE_BP_REGISTER               = 0x42,
+      LOCK_BP_REGISTER                = 0x8D,
+      ENABLE_NON_VOLATILE_BP_REGISTER = 0xE8,
+      DISABLE_GLOBAL_BP_REGISTER      = 0x98
+    };
+
+    enum SECURITY_COMMANDS
+    {
+      READ_SECURITY_DATA    = 0x88,
+      WRITE_SECURITY_DATA   = 0xA5,
+      LOCK_SECURITY_DATA    = 0x85
+    };
 };
 
 #endif //FLASH_SST26_H
