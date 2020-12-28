@@ -87,14 +87,14 @@ void PrintSerialFlashSst26::printUniqueId(FlashSst26::uniqueId_t uniqueId)
   Serial.println();
 }
 
-void PrintSerialFlashSst26::printHexStr(uint8_t buf[], uint32_t len)
+void PrintSerialFlashSst26::printHexStr(uint8_t str[], uint32_t len)
 {
   char string[16] = {0};
   if (len == 0) return;
 
   for (unsigned int i = 0; i < len; i++)
   {
-    sprintf(string, "0x%02x ", buf[i]);
+    sprintf(string, "0x%02x ", str[i]);
     Serial.print(string);
   }
   Serial.println();

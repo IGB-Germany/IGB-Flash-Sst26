@@ -221,7 +221,7 @@ bool FlashSst26::writeRegisterBlockProtection(registerBlockProtection_t register
 
   _comDriverSpi.writeSpi(data, sizeof(data));
 
-  /*retry until device not busy anymore*/
+  //retry until device not busy anymore
   for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
     if (!isBusy()) break;
@@ -231,21 +231,24 @@ bool FlashSst26::writeRegisterBlockProtection(registerBlockProtection_t register
   return true;
 }
 
-bool FlashSst26::writeByte(uint32_t adressStart, uint8_t data[])
+bool FlashSst26::writeByte(uint32_t addressStart, uint8_t data[])
 {
+  //Adress has to start at begin of page
+  if (addressStart % SIZE_PAGE != 0) return false;
+  
   uint8_t cmd[5];
 
   cmd[0] = WRITE_DATA;
-  cmd[1] = adressStart >> 16 & 0xFF;
-  cmd[2] = adressStart >> 8 & 0xFF;
-  cmd[3] = adressStart & 0xFF;
+  cmd[1] = addressStart >> 16 & 0xFF;
+  cmd[2] = addressStart >> 8 & 0xFF;
+  cmd[3] = addressStart & 0xFF;
   cmd[4] = data[0];
 
   enableWrite();
 
   _comDriverSpi.writeSpi(cmd, sizeof(cmd));
 
-  /*retry until device not busy anymore*/
+  //retry until device not busy anymore
   for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
     if (!isBusy()) break;
@@ -256,25 +259,10 @@ bool FlashSst26::writeByte(uint32_t adressStart, uint8_t data[])
 
 bool FlashSst26::writePage(uint32_t addressStart, uint8_t page[])
 {
-  /*Adress has to start at begin of page*/
-  //if (addressStart % _sizePage != 0) return false;
+  //Adress has to start at begin of page
+  if (addressStart % SIZE_PAGE != 0) return false;
 
-  /*Adress has to start at begin of page*/
-  addressStart = addressStart & 0xFFFFFF00;
-
-  /*
-    Serial.print(F("Address: "));
-    Serial.println(adressStart, HEX);
-    uint16_t i = 0;
-     while(i < 0x100)
-    {
-      Serial.print(page[i], HEX);
-      Serial.print(F(" "));
-      i++;
-    }
-  */
-
-  uint8_t cmd[4];
+   uint8_t cmd[4];
 
   cmd[0] = WRITE_DATA;
   cmd[1] = addressStart >> 16 & 0xFF;
@@ -299,7 +287,7 @@ bool FlashSst26::writePage(uint32_t addressStart, uint8_t page[])
 
 bool FlashSst26::writeData(uint32_t addressStart, uint8_t data[], uint32_t lenData)
 {
-  /*Adress has to start at begin of page*/
+  //Adress has to start at begin of page
   if (addressStart % SIZE_PAGE != 0) return false;
 
   //position in data[]
@@ -347,21 +335,41 @@ bool FlashSst26::writeData(uint32_t addressStart, uint8_t data[], uint32_t lenDa
   return true;
 }
 
-void FlashSst26::readData(uint32_t adressStart, uint8_t data[], uint32_t lenData)
+void FlashSst26::readData(uint32_t addressStart, uint8_t data[], uint32_t lenData)
 {
   //analyze lenData
-  //nothing
+  //nothing to read
   if (lenData == 0)
   {
     return;
   }
+
+  //overflow: if addressStart+lenData >= sizeflash return
+
+  uint8_t cmd[4];
+
+  cmd[0] = READ_DATA;
+  cmd[1] = addressStart >> 16 & 0xFF;
+  cmd[2] = addressStart >> 8 & 0xFF;
+  cmd[3] = addressStart & 0xFF;
+
+  _comDriverSpi.writeSpi(cmd, sizeof(cmd), ComDriverSpi::transferStart);
+  _comDriverSpi.readSpi(data, lenData, ComDriverSpi::transferEnd);
+
+  //retry until device not busy anymore
+  for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
+  {
+    if (!isBusy()) break;
+    if (retry == MAX_RETRY)return;
+  }
+/*
 
   //multiple bytes up to 0x100
   else if (lenData > 0 && lenData <= 0x100)
   {
     for (uint32_t i = 0; i < lenData; i++)  data[i] = 0xff;
 
-    readBytes(adressStart, data, lenData);
+    readBytes(addressStart, data, lenData);
   }
 
   //More than a page
@@ -378,7 +386,7 @@ void FlashSst26::readData(uint32_t adressStart, uint8_t data[], uint32_t lenData
       {
         for (uint32_t j = 0; j < lenData; j++)  data[j + i * SIZE_PAGE] = 0xff;
         //read page wise
-        readPage(adressStart + i * SIZE_PAGE, data + i * SIZE_PAGE);
+        readPage(addressStart + i * SIZE_PAGE, data + i * SIZE_PAGE);
       }
     }
 
@@ -393,12 +401,12 @@ void FlashSst26::readData(uint32_t adressStart, uint8_t data[], uint32_t lenData
       {
         for (uint32_t j = 0; j < lenData; j++)  data[j + i * SIZE_PAGE] = 0xff;
         //read page wise
-        readPage(adressStart + i * SIZE_PAGE, data + i * SIZE_PAGE);
+        readPage(addressStart + i * SIZE_PAGE, data + i * SIZE_PAGE);
       }
 
       //read restbytes
       for (uint32_t k = 0; k < restBytes; k++)  data[k + numPages * SIZE_PAGE] = 0xff;
-      readBytes(adressStart + numPages * SIZE_PAGE, data + numPages * SIZE_PAGE, restBytes);
+      readBytes(addressStart + numPages * SIZE_PAGE, data + numPages * SIZE_PAGE, restBytes);
     }
   }
 
@@ -407,7 +415,7 @@ void FlashSst26::readData(uint32_t adressStart, uint8_t data[], uint32_t lenData
   {
     return;
   }
-
+*/
 }
 
 void FlashSst26::readPage(uint32_t addressStart, uint8_t page[])
@@ -430,7 +438,7 @@ void FlashSst26::readPage(uint32_t addressStart, uint8_t page[])
   }
 }
 
-void FlashSst26::readBytes(uint32_t adressStart, uint8_t bytes[], uint16_t numBytes)
+void FlashSst26::readBytes(uint32_t addressStart, uint8_t bytes[], uint16_t numBytes)
 {
   //nothing to read
   if (numBytes == 0) return;
@@ -441,9 +449,9 @@ void FlashSst26::readBytes(uint32_t adressStart, uint8_t bytes[], uint16_t numBy
   uint8_t cmd[4];
 
   cmd[0] = READ_DATA;
-  cmd[1] = adressStart >> 16 & 0xFF;
-  cmd[2] = adressStart >> 8 & 0xFF;
-  cmd[3] = adressStart & 0xFF;
+  cmd[1] = addressStart >> 16 & 0xFF;
+  cmd[2] = addressStart >> 8 & 0xFF;
+  cmd[3] = addressStart & 0xFF;
 
   _comDriverSpi.writeSpi(cmd, sizeof(cmd), ComDriverSpi::transferStart);
   _comDriverSpi.readSpi(bytes, numBytes, ComDriverSpi::transferEnd);
@@ -454,20 +462,13 @@ void FlashSst26::readBytes(uint32_t adressStart, uint8_t bytes[], uint16_t numBy
     if (!isBusy()) break;
     if (retry == MAX_RETRY)return;
   }
-
 }
 
 bool FlashSst26::erase4kByte(uint32_t addressStart)
 {
-  /*Adress has to start at begin of sector*/
-  addressStart = addressStart & 0xFFFFF000;
-  /*
-    Serial.print(F("Address to Erase:\t0x"));
-    Serial.println(addressStart, HEX);
-
-    Serial.print(F("Sector to Erase:\t0x"));
-    Serial.println(addressStart, HEX);
-  */
+  //Address has to start at begin of sector
+  if (addressStart % 0x1000 != 0) return false;
+  
   uint8_t cmd[4];
 
   cmd[0] = ERASE_4KB;
@@ -479,7 +480,7 @@ bool FlashSst26::erase4kByte(uint32_t addressStart)
 
   _comDriverSpi.writeSpi(cmd, sizeof(cmd));
 
-  /*retry until device not busy anymore*/
+  //retry until device not busy anymore
   for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
     delay(DURATION_25_MILLIS);
@@ -491,17 +492,8 @@ bool FlashSst26::erase4kByte(uint32_t addressStart)
 
 bool FlashSst26::erase8kByte(uint32_t addressStart)
 {
-  /*Adress has to start at begin of Block*/
+  //Address has to start at begin of Block
   if (addressStart % 0x2000 != 0) return false;
-
-  /*Adress has to start at begin of sector*/
-  /*
-    Serial.print(F("Address to Erase:\t0x"));
-    Serial.println(addressStart, HEX);
-    //addressStart = addressStart & 0xFFFFF000;
-    Serial.print(F("Sector to Erase:\t0x"));
-    Serial.println(addressStart, HEX);
-  */
 
   uint8_t cmd[4];
 
@@ -514,14 +506,13 @@ bool FlashSst26::erase8kByte(uint32_t addressStart)
 
   _comDriverSpi.writeSpi(cmd, sizeof(cmd));
 
-  /*retry until device not busy anymore*/
+  //retry until device not busy anymore
   for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
     delay(DURATION_25_MILLIS);
     if (!isBusy()) break;
     if (retry == MAX_RETRY)return false;
   }
-
   return true;
 }
 
@@ -535,20 +526,18 @@ bool FlashSst26::eraseAll()
 
   _comDriverSpi.writeSpi(cmd, sizeof(cmd));
 
-  /*retry until device not busy anymore*/
+  //retry until device not busy anymore
   for (uint8_t retry = 0; retry < MAX_RETRY; retry++)
   {
     delay(DURATION_50_MILLIS);
     if (!isBusy()) break;
     if (retry == MAX_RETRY)return false;
   }
-
   return true;
 }
 
 uint8_t FlashSst26::readSecurityData(uint32_t addressStart)
 {
-
   //Unique ID Pre-Programmed at factory address 0000 – 0007H
   //User Programmable address 0008H to 07FFH
   if (addressStart > 0x07FF) addressStart = 0;

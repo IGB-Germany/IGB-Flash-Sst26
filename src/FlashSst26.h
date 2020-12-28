@@ -16,6 +16,7 @@ class FlashSst26
 {
     /*
       to do:
+      New: overflow if addressStart+lenData >= sizeflash return
       New: return int errorCode for all functions
       New: printErrorCode
       Changed: writeData, readData accepts big array and chrashes
@@ -152,15 +153,15 @@ class FlashSst26
     bool eraseAll(void);
 
     //Write
-    bool writeByte(uint32_t adressStart, uint8_t data[]);
+    bool writeByte(uint32_t addressStart, uint8_t data[]);
     bool writePage(uint32_t addressStart, uint8_t page[]);
     //Write data pagewise
     bool writeData(uint32_t addressStart, uint8_t data[], uint32_t lenData);
 
     //Read data
-    void readData(uint32_t adressStart, uint8_t data[], uint32_t lenData);
-    void readPage(uint32_t adressStart, uint8_t page[]);
-    void readBytes(uint32_t adressStart, uint8_t bytes[], uint16_t numBytes);
+    void readData(uint32_t addressStart, uint8_t data[], uint32_t lenData);
+    void readPage(uint32_t addressStart, uint8_t page[]);
+    void readBytes(uint32_t addressStart, uint8_t bytes[], uint16_t numBytes);
 
     //Calculate Crc32
     uint32_t calculateCrc32(const uint8_t data[], uint32_t lenData, uint32_t previousCrc32);
