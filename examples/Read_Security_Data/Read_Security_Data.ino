@@ -15,17 +15,16 @@ void setup()
 
   //buffer
   uint8_t securityData[0x100];
+  uint8_t address = 0;
 
-  //total 0x07FF len of data !!
-  //7 pages
-  for (uint16_t page = 0; page < 7; page++)
+  //address 0 - 0x07FF = 2048 len of data
+  //Unique ID Pre-Programmed at factory address 0000 – 0007H
+  //User Programmable address 0008H to 07FFH
+  for (uint8_t i = 0; i < 8; i++)
   {
-    Serial.print(F("Page: "));
-    Serial.println(page);
-    for (uint16_t i = 0; i < 0x100; i++)
-    {
-      securityData[i] = flashSst26.readSecurityData(i + page * 0x100);
-    }
+    Serial.print(F("Address:\t"));
+    Serial.print(address + (i * 0x100));
+    flashSst26.readSecurityData(address + (i * 0x100), securityData, 0x100);
     //Print page data
     printFlashSst26.printData(securityData, 0x100);
   }

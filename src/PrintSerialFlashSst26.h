@@ -40,7 +40,9 @@ class PrintSerialFlashSst26
     //Print Error message
     void printError(int error = 0);
     //Print message with uint32_t
-    void printMessage(char message, uint32_t data, bool hexFormat = false);
+    void printMessage(char message[], uint32_t data, bool hexFormat = false);
+    //Print CRC32
+    void printCrc32(uint32_t crc32);
 
 };
 

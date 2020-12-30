@@ -235,7 +235,7 @@ bool FlashSst26::writeByte(uint32_t addressStart, uint8_t data[])
 {
   //Adress has to start at begin of page
   if (addressStart % SIZE_PAGE != 0) return false;
-  
+
   uint8_t cmd[5];
 
   cmd[0] = WRITE_DATA;
@@ -262,7 +262,7 @@ bool FlashSst26::writePage(uint32_t addressStart, uint8_t page[])
   //Adress has to start at begin of page
   if (addressStart % SIZE_PAGE != 0) return false;
 
-   uint8_t cmd[4];
+  uint8_t cmd[4];
 
   cmd[0] = WRITE_DATA;
   cmd[1] = addressStart >> 16 & 0xFF;
@@ -284,7 +284,6 @@ bool FlashSst26::writePage(uint32_t addressStart, uint8_t page[])
   return true;
 }
 
-
 bool FlashSst26::writeData(uint32_t addressStart, uint8_t data[], uint32_t lenData)
 {
   //Adress has to start at begin of page
@@ -295,21 +294,9 @@ bool FlashSst26::writeData(uint32_t addressStart, uint8_t data[], uint32_t lenDa
   //number of buffers written
   uint16_t numBuffer = 0;
 
-  /*
-    Serial.println();
-    Serial.println("Address:");
-    Serial.print("Length:\t");
-    Serial.print(F("0x"));
-    Serial.println(lenData, HEX);
-    Serial.print("Start:\t");
-    Serial.print(F("0x"));
-    Serial.println(addressStart, HEX);
-    Serial.println();
-  */
   //cycle trough array data[]
   while (position < lenData)
   {
-
     //create local buffer
     uint8_t buffer[SIZE_PAGE];
     //initalize local buffer with 0xff
@@ -362,60 +349,6 @@ void FlashSst26::readData(uint32_t addressStart, uint8_t data[], uint32_t lenDat
     if (!isBusy()) break;
     if (retry == MAX_RETRY)return;
   }
-/*
-
-  //multiple bytes up to 0x100
-  else if (lenData > 0 && lenData <= 0x100)
-  {
-    for (uint32_t i = 0; i < lenData; i++)  data[i] = 0xff;
-
-    readBytes(addressStart, data, lenData);
-  }
-
-  //More than a page
-  else if (lenData > 0x100)
-  {
-    uint8_t numPages = 0;
-    uint8_t modulo = lenData % SIZE_PAGE;
-
-    //multiple pages
-    if (modulo == 0)
-    {
-      numPages = lenData / SIZE_PAGE;
-      for (uint8_t i = 0; i < numPages; i++)
-      {
-        for (uint32_t j = 0; j < lenData; j++)  data[j + i * SIZE_PAGE] = 0xff;
-        //read page wise
-        readPage(addressStart + i * SIZE_PAGE, data + i * SIZE_PAGE);
-      }
-    }
-
-    //multiple pages plus some bytes
-    else if (modulo != 0)
-    {
-      uint8_t restBytes = lenData - modulo;
-      //subtract the restbytes
-      numPages = (lenData - restBytes) / SIZE_PAGE;
-
-      for (uint8_t i = 0; i < numPages; i++)
-      {
-        for (uint32_t j = 0; j < lenData; j++)  data[j + i * SIZE_PAGE] = 0xff;
-        //read page wise
-        readPage(addressStart + i * SIZE_PAGE, data + i * SIZE_PAGE);
-      }
-
-      //read restbytes
-      for (uint32_t k = 0; k < restBytes; k++)  data[k + numPages * SIZE_PAGE] = 0xff;
-      readBytes(addressStart + numPages * SIZE_PAGE, data + numPages * SIZE_PAGE, restBytes);
-    }
-  }
-
-  //error
-  else
-  {
-    return;
-  }
-*/
 }
 
 void FlashSst26::readPage(uint32_t addressStart, uint8_t page[])
@@ -468,7 +401,7 @@ bool FlashSst26::erase4kByte(uint32_t addressStart)
 {
   //Address has to start at begin of sector
   if (addressStart % 0x1000 != 0) return false;
-  
+
   uint8_t cmd[4];
 
   cmd[0] = ERASE_4KB;
@@ -490,14 +423,14 @@ bool FlashSst26::erase4kByte(uint32_t addressStart)
   return true;
 }
 
-bool FlashSst26::erase8kByte(uint32_t addressStart)
+bool FlashSst26::eraseBlock(uint32_t addressStart)
 {
   //Address has to start at begin of Block
   if (addressStart % 0x2000 != 0) return false;
 
   uint8_t cmd[4];
 
-  cmd[0] = ERASE_8KB;
+  cmd[0] = ERASE_BLOCK;
   cmd[1] = addressStart >> 16 & 0xFF;
   cmd[2] = addressStart >> 8 & 0xFF;
   cmd[3] = addressStart & 0xFF;
@@ -536,15 +469,13 @@ bool FlashSst26::eraseAll()
   return true;
 }
 
-uint8_t FlashSst26::readSecurityData(uint32_t addressStart)
+void FlashSst26::readSecurityData(uint32_t addressStart, uint8_t securityData[], uint32_t lenSecurityData)
 {
   //Unique ID Pre-Programmed at factory address 0000 – 0007H
   //User Programmable address 0008H to 07FFH
-  if (addressStart > 0x07FF) addressStart = 0;
+  if (addressStart > 0x07FF) addressStart = 0x0000;
 
   uint8_t cmd[4];
-  //buffer security data
-  uint8_t securityData[1] = {0xff};
 
   cmd[0] = READ_SECURITY_DATA;
   cmd[1] = (addressStart) >> 8 & 0xff;
@@ -552,30 +483,42 @@ uint8_t FlashSst26::readSecurityData(uint32_t addressStart)
   cmd[3] = 0xff; //dummy
 
   _comDriverSpi.writeSpi(cmd, sizeof(cmd), ComDriverSpi::transferStart);
-  _comDriverSpi.readSpi(securityData, sizeof(securityData), ComDriverSpi::transferEnd);
+  _comDriverSpi.readSpi(securityData, lenSecurityData, ComDriverSpi::transferEnd);
 
-  return securityData[0];
 }
 
-bool FlashSst26::writeSecurityData()
+//Write security data one-time programmable (OTP) 2040 bytes of security data available
+bool FlashSst26::writeSecurityData(uint32_t addressStart, uint8_t securityData[], uint32_t lenSecurityData, bool otp)
 {
-  uint32_t address = 8;
-  uint8_t cmd[3];
-  /*2040 bytes of security data available*/
-  uint16_t const lenSecureData = 100;
-  /*buffer security data*/
-  uint8_t secureData[lenSecureData] = { 0 };
-  /*initalize*/
-  for (uint16_t i = 0; i < lenSecureData; i++) secureData[i] = 0xef;
+  if(otp == true) return false;
 
+  //Unique ID Pre-Programmed at factory address 0000 – 0007H
+  //User Programmable address 0008H to 07FFH
+  if (addressStart > 0x07FF) addressStart = 0x0008;
+  else if (addressStart < 0x0008) addressStart = 0x0008;
+  
+  uint8_t cmd[3];
   cmd[0] = WRITE_SECURITY_DATA;
-  cmd[1] = address >> 8 & 0xff;
-  cmd[2] = address & 0xff;
+  cmd[1] = addressStart >> 8 & 0xff;
+  cmd[2] = addressStart & 0xff;
 
   enableWrite();
 
   _comDriverSpi.writeSpi(cmd, sizeof(cmd), ComDriverSpi::transferStart);
-  _comDriverSpi.readSpi(secureData, sizeof(secureData), ComDriverSpi::transferEnd);
+  _comDriverSpi.writeSpi(securityData, lenSecurityData, ComDriverSpi::transferEnd);
+
+  return true;
+}
+
+bool FlashSst26::lockSecurityData(bool otp)
+{
+  if(otp == true) return false;
+  
+  uint8_t cmd[1];
+
+  cmd[0] = LOCK_SECURITY_DATA;
+
+  _comDriverSpi.writeSpi(cmd, sizeof(cmd));
 
   return true;
 }
@@ -609,9 +552,9 @@ bool FlashSst26::releaseDeepPowerDown(void)
   uint8_t cmd[4];
 
   cmd[0] = RELEASE_DEEP_POWER_DOWN;
-  cmd[1] = 0xff;/*dummy*/
-  cmd[2] = 0xff;/*dummy*/
-  cmd[3] = 0xff;/*dummy*/
+  cmd[1] = 0xff;//dummy
+  cmd[2] = 0xff;//dummy
+  cmd[3] = 0xff;//dummy
 
   _comDriverSpi.writeSpi(cmd, sizeof(cmd));
 
@@ -652,7 +595,7 @@ uint32_t FlashSst26::getFrequency()
   return _comDriverSpi.getFrequency();
 }
 
-uint32_t FlashSst26::calculateCrc32(const uint8_t data[], uint32_t lenData, uint32_t previousCrc32)
+uint32_t FlashSst26::calculateCrc32(uint8_t data[], uint32_t lenData, uint32_t previousCrc32)
 {
   const uint32_t polynomial = 0xEDB88320;
   uint32_t crc = ~previousCrc32;
@@ -675,4 +618,41 @@ uint32_t FlashSst26::calculateCrc32(const uint8_t data[], uint32_t lenData, uint
     }
   }
   return ~crc;
+}
+
+//Read data pagewise from flash and calculate its Crc32
+uint32_t  FlashSst26::readCrc32(uint32_t address, uint32_t lenData)
+{
+  //CRC32 value
+  uint32_t crc32 = 0;
+  //data buffer
+  uint8_t buffer[0x100];
+  //number of pages to check
+  uint32_t numPages = 0;
+  //calculate rest
+  uint16_t modulo = lenData % 0x100;
+  //subtract the rest
+  numPages = (lenData - modulo) / 0x100;
+
+  for (uint32_t page = 0; page < numPages; page++)
+  {
+    //initalize buffer with 0xff
+    for (uint16_t i = 0; i < 0x100; i++) buffer[i] = 0xff;
+    //read a page of data
+    readData(address + page * 0x100, buffer, 0x100);
+    //calculate crc32
+    crc32 = calculateCrc32(buffer, 0x100, crc32);
+  }
+
+  //is there a modulo ?
+  if (modulo)
+  {
+    //initalize buffer with 0xff
+    for (uint16_t i = 0; i < 0x100; i++) buffer[i] = 0xff;
+    //read modulo
+    readData(address +  numPages * 0x100, buffer, modulo);
+    //calculate crc32
+    crc32 = calculateCrc32(buffer, modulo, crc32);
+  }
+  return crc32;
 }

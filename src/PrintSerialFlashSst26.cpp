@@ -161,12 +161,13 @@ void PrintSerialFlashSst26::printError(int error)
 }
 
 //Print message with uint32_t
-void PrintSerialFlashSst26::printMessage(char message, uint32_t data, bool hexFormat)
+void PrintSerialFlashSst26::printMessage(char message[], uint32_t data, bool hexFormat)
 {
   Serial.print(message);
   Serial.print(F("\t"));
   if (hexFormat)
-  { Serial.print(F("0x"));
+  { 
+    Serial.print(F("0x"));
     Serial.print(data, HEX);
   }
   else

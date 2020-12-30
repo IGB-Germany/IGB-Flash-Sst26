@@ -3,10 +3,8 @@
 #define FLASH_SST26_H
 
 //Class for Flash Memory SST26
-//Version 0.3.0
-//06.09.2020
 //Flash: 2234 Bytes
-//RAM:   290 Bytes
+//RAM:   258 Bytes
 //by IGB
 
 //SPI communication layer
@@ -109,28 +107,32 @@ class FlashSst26
     bool enableWrite(void);
     //Disable write
     bool disableWrite(void);
-    /*Read id*/
+    //Read id
     id_t readId();
-    /*Read unique id*/
+    //Read unique id
     uniqueId_t readUniqueId();
-    /*Read register status*/
+    //Read register status
     registerStatus_t readRegisterStatus();
-    /*Read register configuration*/
+    //Read register configuration
     registerConfiguration_t readRegisterConfiguration();
-    /*Read register block protection */
+    //Read register block protection
     registerBlockProtection_t readRegisterBlockProtection();
 
-    /*Write register configuration*/
+    //Write register configuration
     bool writeRegisterConfiguration(registerConfiguration_t registerConfiguration);
-    /*Write register block protection*/
+    //Write register block protection
     bool writeRegisterBlockProtection(registerBlockProtection_t registerBlockProtection);
-    /*Disable Global Block Protection*/
+    //Disable Global Block Protection
     bool disableGlobalBlockProtection(void);
-    /*Read security data*/
-    uint8_t readSecurityData(uint32_t addressStart);
-    /*Write security data*/
-    bool writeSecurityData();
-    /*Erase 4kBytes = 0x1000*/
+    
+    //Read security data
+    void readSecurityData(uint32_t addressStart, uint8_t securityData[], uint32_t lenSecurityData);
+    //Write security data one-time programmable (OTP) 2040 bytes of security data available
+    bool writeSecurityData(uint32_t addressStart, uint8_t securityData[], uint32_t lenSecurityData, bool otp = true);
+    //Lock prevents any future changes to securityData
+    bool lockSecurityData(bool otp = true);
+    
+    //Erase 4kBytes = 0x1000
     bool erase4kByte(uint32_t addressStart);
     /*
         Sector 4kByte
@@ -143,12 +145,9 @@ class FlashSst26
         AMS - A16 for 64 KByte
         Remaining addresses are dont care, but must be set to VIL or VIH
     */
-    //Erase 8kBytes = 0x2000
-    bool erase8kByte(uint32_t addressStart);
-    //Erase 32kBytes = 0x8000
-    bool erase32kByte(uint32_t addressStart);
-    //Erase 64kBytes = 0xFFFF
-    bool erase64kByte(uint32_t addressStart);
+    //Erase 8kBytes = 0x2000, 32kBytes = 0x8000, 64kBytes = 0xFFFF
+    bool eraseBlock(uint32_t addressStart);
+
     //Erase all
     bool eraseAll(void);
 
@@ -162,9 +161,9 @@ class FlashSst26
     void readData(uint32_t addressStart, uint8_t data[], uint32_t lenData);
     void readPage(uint32_t addressStart, uint8_t page[]);
     void readBytes(uint32_t addressStart, uint8_t bytes[], uint16_t numBytes);
-
-    //Calculate Crc32
-    uint32_t calculateCrc32(const uint8_t data[], uint32_t lenData, uint32_t previousCrc32);
+    
+    //Read data pagewise from flash and calculate its Crc32
+    uint32_t readCrc32(uint32_t address, uint32_t lenData);
 
     //Enable deep power down
     bool enableDeepPowerDown(void);
@@ -184,6 +183,8 @@ class FlashSst26
 
     //SPI communication driver class
     ComDriverSpi _comDriverSpi;
+
+    uint32_t calculateCrc32(uint8_t data[], uint32_t lenData, uint32_t previousCrc32);
 
     //address we are working on
     uint32_t _address;
@@ -280,10 +281,8 @@ class FlashSst26
 
     enum ERASE_COMMANDS
     {
-      ERASE_4KB             = 0x20,
-      ERASE_8KB             = 0xD8,
-      ERASE_32KB            = 0xD8,
-      ERASE_64KB            = 0xD8,
+      ERASE_4KB             = 0x20,//4KB
+      ERASE_BLOCK           = 0xD8,//8KB, 32KB, 64KB
       ERASE_ALL             = 0xC7
     };
 
